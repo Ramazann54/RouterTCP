@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RouterTCP</string>
+    <string name="current_routes">Текущие маршруты</string>
+    <string name="ip_address">IP-адрес</string>
+    <string name="tcp_port">TCP-порт</string>
+    <string name="serial_number">Серийный номер ПУ</string>
+    <string name="connection_status">Статус соединения</string>
 </resources>

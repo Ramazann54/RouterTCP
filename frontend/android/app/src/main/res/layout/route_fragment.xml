@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/ipAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:text="192.168.1.1"
+        android:textColor="@color/dark_gray_main_text" />
+
+    <TextView
+        android:id="@+id/tcpPort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="12345"
+        android:textColor="@color/dark_gray_main_text" />
+
+    <TextView
+        android:id="@+id/serialNumber"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:text="1234578"
+        android:textColor="@color/dark_gray_main_text" />
+
+    <ImageView
+        android:id="@+id/connectionStatusSuccessInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/success_in"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/connectionStatusSuccessOutput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/succes_out"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/connectionStatusErrorInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/error_in"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/connectionStatusErrorOutput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/error_out"
+        android:gravity="center"
+        android:visibility="gone" />
+
+
+</LinearLayout>
+
+
+
