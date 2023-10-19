@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.main.add_and_edit_routes.AddingRoutesActivity">
+
+
+    <Button
+        android:id="@+id/upButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/upButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/downButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/downButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/ipAddress"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/ipText"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upButton" />
+
+    <EditText
+        android:id="@+id/tcpPort"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tcpPort"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/serialNumber"
+        app:layout_constraintEnd_toEndOf="@+id/ipAddress"
+        app:layout_constraintStart_toStartOf="@+id/ipAddress"
+        app:layout_constraintTop_toBottomOf="@+id/ipAddress"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/serialNumber"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="300dp"
+        android:text="@string/serialNumber"
+        app:layout_constraintBottom_toTopOf="@+id/downButton"
+        app:layout_constraintEnd_toEndOf="@+id/tcpPort"
+        app:layout_constraintStart_toStartOf="@+id/tcpPort"
+        android:inputType="number" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
