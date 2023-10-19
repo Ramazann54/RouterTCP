@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/CameraButton"
+        android:layout_width="163dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#000000"
+        android:text="Camera"
+        app:iconTint="@color/black"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="509dp" />
+
+    <Button
+        android:id="@+id/GalleryButton"
+        android:layout_width="163dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#000000"
+        android:text="Gallery"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="256dp"
+        tools:layout_editor_absoluteY="509dp" />
+
+    <ImageView
+        android:id="@+id/QRImageView"
+        android:layout_width="249dp"
+        android:layout_height="237dp"
+        app:srcCompat="@drawable/ic_qr_scanner"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="93dp"
+        tools:layout_editor_absoluteY="238dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="301dp"
+        android:layout_height="65dp"
+        android:text="authorization"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="149dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/ScanButton"
+        android:layout_width="309dp"
+        android:layout_height="66dp"
+        android:backgroundTint="#E85800"
+        android:text="Scan"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="582dp" />
+
+    <TextView
+        android:id="@+id/ResultText"
+        android:layout_width="108dp"
+        android:layout_height="38dp"
+        android:textAlignment="center"
+        android:textColor="#E75800"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="87dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
