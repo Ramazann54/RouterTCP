@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">RouterTCP</string>
     <string name="upButton">Добавить</string>
-    <string name="downButton">Очистить поля</string>
-    <string name="ipText">XXX.XXX.XXX.XXX</string>
-    <string name="tcpPort">XXXXX</string>
-    <string name="serialNumber">xxxxxxxxxx</string>
+    <string name="downButton">Отмена</string>
+    <string name="tcpPortText">TCP-порт</string>
+    <string name="ipAddressText">IP-адрес</string>
+    <string name="serialNumberText">Серийный номер</string>
+    <string name="spaces">"   "</string>
 </resources>
