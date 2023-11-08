@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.add_and_edit_routes.AddingRoutesActivity">
+    tools:context=".view.main.add_and_edit_routes.AddingEditRoutesActivity">
 
 
     <Button
-        android:id="@+id/upButton"
+        android:id="@+id/add_button"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginBottom="204dp"
         android:text="@string/upButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/downButton"
+        app:layout_constraintEnd_toStartOf="@+id/cancel_button"
         app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/downButton"
+        android:id="@+id/cancel_button"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginEnd="72dp"
@@ -29,52 +29,52 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/ipAddress"
+        android:id="@+id/ip_address"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/ipAddressTextView"
+        app:layout_constraintEnd_toEndOf="@+id/ip_address_text_view"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/ipAddressTextView"
-        app:layout_constraintTop_toBottomOf="@+id/ipAddressTextView" />
+        app:layout_constraintStart_toStartOf="@+id/ip_address_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/ip_address_text_view" />
 
     <EditText
-        android:id="@+id/tcpPort"
+        android:id="@+id/tcp_port"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:inputType="number"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/tcpPortTextView"
+        app:layout_constraintEnd_toEndOf="@+id/tcp_port_text_view"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/tcpPortTextView"
-        app:layout_constraintTop_toBottomOf="@+id/tcpPortTextView" />
+        app:layout_constraintStart_toStartOf="@+id/tcp_port_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/tcp_port_text_view" />
 
     <EditText
-        android:id="@+id/serialNumber"
+        android:id="@+id/serial_number"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="@+id/serialNumberTextView"
+        app:layout_constraintEnd_toEndOf="@+id/serial_number_text_view"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/serialNumberTextView"
-        app:layout_constraintTop_toBottomOf="@+id/serialNumberTextView" />
+        app:layout_constraintStart_toStartOf="@+id/serial_number_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/serial_number_text_view" />
 
     <TextView
-        android:id="@+id/tcpPortTextView"
+        android:id="@+id/tcp_port_text_view"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:text="@string/tcpPortText"
-        app:layout_constraintEnd_toEndOf="@+id/ipAddress"
+        app:layout_constraintEnd_toEndOf="@+id/ip_address"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/ipAddress"
-        app:layout_constraintTop_toBottomOf="@+id/ipAddress" />
+        app:layout_constraintStart_toStartOf="@+id/ip_address"
+        app:layout_constraintTop_toBottomOf="@+id/ip_address" />
 
     <TextView
-        android:id="@+id/ipAddressTextView"
+        android:id="@+id/ip_address_text_view"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginTop="64dp"
@@ -85,14 +85,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/serialNumberTextView"
+        android:id="@+id/serial_number_text_view"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:text="@string/serialNumberText"
-        app:layout_constraintEnd_toEndOf="@+id/tcpPort"
+        app:layout_constraintEnd_toEndOf="@+id/tcp_port"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tcpPort"
-        app:layout_constraintTop_toBottomOf="@+id/tcpPort" />
+        app:layout_constraintStart_toStartOf="@+id/tcp_port"
+        app:layout_constraintTop_toBottomOf="@+id/tcp_port" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
