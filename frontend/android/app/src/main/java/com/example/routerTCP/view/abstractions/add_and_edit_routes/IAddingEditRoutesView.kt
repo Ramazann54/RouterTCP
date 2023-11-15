@@ -7,4 +7,14 @@ interface IAddingEditRoutesView {
     fun setHeader(header: String)
 
     fun setEnabledSerialNumberEditText(boolean: Boolean)
+
+    fun finishActivity()
+
+    fun setInvalidTextVisibility(boolean: Boolean)
+
+    fun setIPColor(color: Int)
+
+    fun setTCPColor(color: Int)
+
+    fun setSNColor(color: Int)
 }
