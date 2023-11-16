@@ -2,16 +2,22 @@ package com.example.routerTCP.view.main_screen
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
+import com.example.routerTCP.model.objects.Route
 import com.example.routerTCP.presenter.MainScreenPresenter
 import com.example.routerTCP.view.abstractions.IMainScreenView
+import com.example.routerTCP.view.main.add_and_edit_routes.AddingRoutesActivity
 
-class MainScreenWithTable: AppCompatActivity(), IMainScreenView, OnClickListener {
+
+class MainScreenWithTable : AppCompatActivity(), IMainScreenView, OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,19 +25,27 @@ class MainScreenWithTable: AppCompatActivity(), IMainScreenView, OnClickListener
         recyclerView = findViewById<RecyclerView?>(R.id.recyclerViewRouteTable).apply {
             adapter = this@MainScreenWithTable.adapter
         }
+        recyclerView.layoutManager = LinearLayoutManager(this@MainScreenWithTable)
+
         addButton = findViewById(R.id.addRouteButton)
         addButton.setOnClickListener(this)
+
+        presenter.onViewCreated(this)
+    }
+
+
+    override fun startAddRouteActivity(route: Route) {
+        val intent = Intent(this, AddingRoutesActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onClick(view: View?) {
-        if (view === addButton){
+        if (view === addButton) {
             //todo: переход на следующую активити
         }
     }
 
-   /* override fun startAddRoutesActivity(){
-        val intent = Intent(this, )
-    }*/
+
 
     override fun onDestroy() {
         super.onDestroy()

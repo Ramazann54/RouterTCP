@@ -1,9 +1,9 @@
 package com.example.routerTCP.model.abstractions.routes
 
+import com.example.routerTCP.model.objects.Route
+
 
 interface IRoutesService {
-    var ipAddress: List<String>
-    var tcpPort: List<Int>
-    var serialNumber: List<Long>
-    var routesCount: Int
+    val routes: List<Route>
+    var currentClickedData: Int
 }

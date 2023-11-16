@@ -3,76 +3,80 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:weightSum="4">
 
     <TextView
         android:id="@+id/ipAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:gravity="center"
-        android:text="192.168.1.1"
+        android:layout_weight="1"
         android:textColor="@color/dark_gray_main_text" />
 
     <TextView
         android:id="@+id/tcpPort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin = "10dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="12345"
+        android:text="332132"
+        android:layout_weight="1"
         android:textColor="@color/dark_gray_main_text" />
 
     <TextView
         android:id="@+id/serialNumber"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin = "10dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:gravity="center"
-        android:text="1234578"
+        android:text="332132"
+        android:layout_weight="1"
         android:textColor="@color/dark_gray_main_text" />
 
     <ImageView
-        android:id="@+id/connectionStatusSuccessInput"
+        android:id="@+id/connectWithDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin = "10dp"
+        android:layout_weight="1"
         android:background="@drawable/success_device"
-        android:gravity="center"
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/connectionStatusSuccessOutput"
+        android:id="@+id/connectWithDCS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin = "10dp"
+        android:layout_weight="1"
         android:background="@drawable/success_ssd"
-        android:gravity="center"
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/connectionStatusErrorInput"
+        android:id="@+id/noConnectWithDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin = "10dp"
+        android:layout_weight="1"
         android:background="@drawable/error_ssd"
-        android:gravity="center"
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/connectionStatusErrorOutput"
+        android:id="@+id/noConnectWithDCS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin = "10dp"
+        android:layout_weight="1"
         android:background="@drawable/error_device"
-        android:gravity="center"
         android:visibility="gone" />
 
 
 </LinearLayout>
+
+
+
+
 
 
 

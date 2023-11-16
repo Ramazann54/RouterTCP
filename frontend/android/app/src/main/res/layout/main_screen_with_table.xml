@@ -35,7 +35,7 @@
         android:layout_margin="20dp"
         android:background="@drawable/route_table_rec_background"
         android:elevation="10dp"
-        android:gravity="center"
+        android:padding="5dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +54,7 @@
                 android:gravity="center"
                 android:text="@string/ip_address"
                 android:textColor="@color/dark_gray_main_text" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,8 +88,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewRouteTable"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/route_table_rec_background" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

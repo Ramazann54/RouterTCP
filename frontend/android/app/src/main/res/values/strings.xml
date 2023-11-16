@@ -4,5 +4,12 @@
     <string name="ip_address">IP-адрес</string>
     <string name="tcp_port">TCP-порт</string>
     <string name="serial_number">Серийный номер ПУ</string>
-    <string name="connection_status">Статус соединения</string>
+    <string name="connection_status">Статус</string>
+    <string name="upButton">Добавить</string>
+    <string name="downButton">Удалить</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete_confirmation">Вы уверены, что хотите удалить маршрут?</string>
+    <string name="cancel">Отмена</string>
+
 </resources>

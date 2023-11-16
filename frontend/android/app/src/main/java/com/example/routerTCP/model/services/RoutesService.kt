@@ -1,32 +1,39 @@
 package com.example.routerTCP.model.services
 
-import android.location.Address
 import com.example.routerTCP.model.abstractions.routes.IRoutesService
+import com.example.routerTCP.model.objects.ConnectionStatus
+import com.example.routerTCP.model.objects.Route
 
-class RoutesService : IRoutesService {
-    override var ipAddress: List<String>
-        get() = addressIp
+class RoutesService() : IRoutesService {
+    override val routes: List<Route> = listOf(
+        Route("12345678", 1234, 5689784, ConnectionStatus.ConnectWithDCS),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDCS),
+        Route("12345678", 1234, 5689784, ConnectionStatus.ConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+
+        )
+
+    override var currentClickedData: Int
+        get() = _currentClickedDate
         set(value) {
-            addressIp = value
-        }
-    override var tcpPort: List<Int>
-        get() = portTCP
-        set(value) {portTCP}
-    override var serialNumber: List<Long>
-        get() = deviceSerialNumber
-        set(value) {deviceSerialNumber = value}
-    override var routesCount: Int
-        get() = countOfRoutes
-        set(value) {
-            countOfRoutes = value
+            _currentClickedDate = value
         }
 
+    var _currentClickedDate = 0
 
-    var addressIp: List<String> = listOf(
-        "123.123.123.123",
-        "123.123.123.124", "123.123.123.125"
-    )
-    var countOfRoutes: Int = 5
-    var deviceSerialNumber: List<Long> = listOf(127897, 1235589, 6564654)
-    var portTCP: List<Int> = listOf(1234, 6543, 7894)
+
+    //todo load suspend fun, подписка на обновления, события с новыми данными - обновить ui
+
+
 }
