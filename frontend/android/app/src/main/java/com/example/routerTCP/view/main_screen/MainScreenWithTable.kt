@@ -2,19 +2,17 @@ package com.example.routerTCP.view.main_screen
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
 import com.example.routerTCP.model.objects.Route
 import com.example.routerTCP.presenter.MainScreenPresenter
 import com.example.routerTCP.view.abstractions.IMainScreenView
-import com.example.routerTCP.view.main.add_and_edit_routes.AddingRoutesActivity
+import com.example.routerTCP.view.main.add_and_edit_routes.AddingEditRoutesActivity
 
 
 class MainScreenWithTable : AppCompatActivity(), IMainScreenView, OnClickListener {
@@ -35,7 +33,7 @@ class MainScreenWithTable : AppCompatActivity(), IMainScreenView, OnClickListene
 
 
     override fun startAddRouteActivity(route: Route) {
-        val intent = Intent(this, AddingRoutesActivity::class.java)
+        val intent = Intent(this, AddingEditRoutesActivity::class.java)
         startActivity(intent)
     }
 

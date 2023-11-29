@@ -9,53 +9,56 @@
 
     <Button
         android:id="@+id/changeable_button"
-        android:layout_width="125dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="204dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="200dp"
+        android:backgroundTint="@color/dark_gray"
         android:text="@string/upButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancel_button"
-        app:layout_constraintHorizontal_bias="0.707"
+        app:layout_constraintHorizontal_bias="0.879"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/cancel_button"
-        android:layout_width="125dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="204dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="200dp"
+        android:backgroundTint="@color/dark_gray"
         android:text="@string/downButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/ip_address"
-        android:layout_width="125dp"
+        android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/ip_address_text_view"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/ip_address_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/ip_address_text_view" />
+        app:layout_constraintTop_toBottomOf="@+id/ip_address_text_view"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/tcp_port"
-        android:layout_width="125dp"
+        android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:inputType="number"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/tcp_port_text_view"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tcp_port_text_view"
         app:layout_constraintTop_toBottomOf="@+id/tcp_port_text_view" />
 
     <EditText
         android:id="@+id/serial_number"
-        android:layout_width="125dp"
+        android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/serial_number_text_view"
         app:layout_constraintHorizontal_bias="0.0"
@@ -77,10 +80,11 @@
         android:id="@+id/ip_address_text_view"
         android:layout_width="125dp"
         android:layout_height="40dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="68dp"
         android:text="@string/ipAddressText"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
