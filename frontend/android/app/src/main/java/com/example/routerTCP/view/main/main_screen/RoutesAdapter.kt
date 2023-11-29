@@ -1,4 +1,4 @@
-package com.example.routerTCP.view.main_screen
+package com.example.routerTCP.view.main.main_screen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

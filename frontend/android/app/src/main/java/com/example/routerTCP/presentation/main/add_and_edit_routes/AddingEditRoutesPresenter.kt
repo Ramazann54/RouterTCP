@@ -7,22 +7,9 @@ import com.example.routerTCP.view.abstractions.add_and_edit_routes.IAddingEditRo
 class AddingEditRoutesPresenter :
     IPresenter<IAddingEditRoutesView> {
 
-    fun setActivityParam(param: String) {
-        activityParam = param
-    }
-
     override fun onViewCreated(view: IAddingEditRoutesView) {
         this.view = view
-        if (activityParam == "Add") {
-            view.setChangeableButtonText("Добавить")
-            view.setEnabledSerialNumberEditText(true)
-            view.setHeader("Добавление пути")
-        } else {
-            //выставление надписи на кнопке, блокировка серийного номера и изменение хедера
-            view.setChangeableButtonText("Редактировать")
-            view.setEnabledSerialNumberEditText(false)
-            view.setHeader("Редактирование пути")
-        }
+        setupState()
     }
 
     fun onCancelButtonClick() {
@@ -89,9 +76,31 @@ class AddingEditRoutesPresenter :
         view?.setInvalidTextVisibility(false)
         view?.setTCPColor(R.color.black)
     }
-    private fun setupState(){
-        if (){
 
+
+    fun setActivityState(currentState: Int){
+        if(currentActivityState != currentState){
+            currentActivityState = currentState
+        }
+    }
+    fun onSaveCurrentActivityState(): Int = currentActivityState
+
+    fun onRestoreCurrentActivityState(currentState: Int){
+        if(currentActivityState != currentState){
+            currentActivityState = currentState
+            setupState()
+        }
+    }
+
+    private fun setupState(){
+        if (currentActivityState == EDIT_ROUTES_STATE){
+            view?.setChangeableButtonText("Редактировать")
+            view?.setEnabledSerialNumberEditText(false)
+            view?.setHeader("Редактирование пути")
+        }else{
+            view?.setChangeableButtonText("Добавить")
+            view?.setEnabledSerialNumberEditText(true)
+            view?.setHeader("Добавление пути")
         }
     }
 
@@ -111,5 +120,6 @@ class AddingEditRoutesPresenter :
 
     companion object{
         private const val EDIT_ROUTES_STATE = 0 //Редактирование пути
+        private const val ADD_ROUTES_STATE = 1 //Добавление пути
     }
 }

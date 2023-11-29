@@ -9,24 +9,28 @@
 
     <Button
         android:id="@+id/changeable_button"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="100dp"
+        android:autoSizeTextType="none"
         android:backgroundTint="@color/dark_gray"
         android:text="@string/upButton"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancel_button"
-        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintHorizontal_bias="0.672"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/cancel_button"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="100dp"
+        android:autoSizeTextType="none"
         android:backgroundTint="@color/dark_gray"
         android:text="@string/downButton"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

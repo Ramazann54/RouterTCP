@@ -1,4 +1,4 @@
-package com.example.routerTCP.view.main_screen
+package com.example.routerTCP.view.main.main_screen
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,15 +15,15 @@ import com.example.routerTCP.view.abstractions.IMainScreenView
 import com.example.routerTCP.view.main.add_and_edit_routes.AddingEditRoutesActivity
 
 
-class MainScreenWithTable : AppCompatActivity(), IMainScreenView, OnClickListener {
+class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_screen_with_table)
         recyclerView = findViewById<RecyclerView?>(R.id.recyclerViewRouteTable).apply {
-            adapter = this@MainScreenWithTable.adapter
+            adapter = this@MainScreenWithTableActivity.adapter
         }
-        recyclerView.layoutManager = LinearLayoutManager(this@MainScreenWithTable)
+        recyclerView.layoutManager = LinearLayoutManager(this@MainScreenWithTableActivity)
 
         addButton = findViewById(R.id.addRouteButton)
         addButton.setOnClickListener(this)
@@ -32,8 +32,10 @@ class MainScreenWithTable : AppCompatActivity(), IMainScreenView, OnClickListene
     }
 
 
-    override fun startAddRouteActivity(route: Route) {
+    override fun startAddEditRouteActivity(route: Route) {
         val intent = Intent(this, AddingEditRoutesActivity::class.java)
+        intent.putExtra("EDIT_ROUTES_STATE", 1)
+        // TODO: добавлять рут в сервис
         startActivity(intent)
     }
 

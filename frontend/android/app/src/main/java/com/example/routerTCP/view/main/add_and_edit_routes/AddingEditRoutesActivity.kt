@@ -2,6 +2,7 @@ package com.example.routerTCP.view.main.add_and_edit_routes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.EditText
@@ -14,7 +15,7 @@ import com.example.routerTCP.view.abstractions.add_and_edit_routes.IAddingEditRo
 class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEditRoutesView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_adding_routes)
+        setContentView(R.layout.activity_adding_edit_routes)
 
         changeableButton = findViewById(R.id.changeable_button)
         changeableButton.setOnClickListener(this)
@@ -30,8 +31,18 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
         serialNumberTextView = findViewById(R.id.serial_number_text_view)
         invalidTextView = findViewById(R.id.invalidTextView)
 
-        presenter.setActivityParam("Add")
+        val currentActivityState =
+            savedInstanceState?.getInt(CURRENT_ACTIVITY_STATE_PARAM_NAME) ?: 0
+
+        presenter.setActivityState(currentActivityState)
         presenter.onViewCreated(this)
+        presenter.onRestoreCurrentActivityState(currentActivityState)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        val currentState = presenter.onSaveCurrentActivityState()
+        outState.putInt(CURRENT_ACTIVITY_STATE_PARAM_NAME, currentState)
     }
 
     override fun onClick(p0: View?) {
@@ -55,6 +66,10 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
 
     override fun onDestroy() {
         super.onDestroy()
+
+        changeableButton.setOnClickListener(null)
+        cancelButton.setOnClickListener(null)
+
         presenter.onDestroy()
     }
 
@@ -95,7 +110,7 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
     }
 
     /**
-     * кнопка которая будет изменяемой
+     * Кнопка, которая будет изменяемой
      */
     private lateinit var changeableButton: AppCompatButton
 
@@ -110,4 +125,10 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
     private lateinit var cancelButton: AppCompatButton
 
     private val presenter = AddingEditRoutesPresenter()
+
+    companion object {
+        //имя параметра для сохранения в bundle текущего состояния активити
+        private const val CURRENT_ACTIVITY_STATE_PARAM_NAME =
+            "CURRENT_ACTIVITY_STATE_PARAM_NAME"
+    }
 }

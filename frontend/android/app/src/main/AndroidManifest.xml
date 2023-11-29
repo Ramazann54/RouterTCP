@@ -21,7 +21,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.main_screen.MainScreenWithTable"
+            android:name=".view.main.main_screen.MainScreenWithTableActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
