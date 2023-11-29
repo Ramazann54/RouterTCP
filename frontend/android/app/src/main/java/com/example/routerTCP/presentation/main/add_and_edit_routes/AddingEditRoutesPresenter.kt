@@ -33,7 +33,7 @@ class AddingEditRoutesPresenter :
         if(activityParam == "Add"){
             //Если добавляем
             var success = editTextsCheck()
-            if(serialNumber/10 !in 8..12){
+            if(serialNumber.isBlank()){
                 success = false
                 view?.setSNColor(R.color.red)
             }else{
@@ -72,7 +72,7 @@ class AddingEditRoutesPresenter :
         return success
     }
 
-    fun onSerialNumberTextChanged(sn: Long){
+    fun onSerialNumberTextChanged(sn: String){
         serialNumber = sn
         view?.setInvalidTextVisibility(false)
         view?.setSNColor(R.color.black)
@@ -97,7 +97,8 @@ class AddingEditRoutesPresenter :
 
     private var view: IAddingEditRoutesView? = null
     private var activityParam = ""
-    private var serialNumber: Long = 0
+    //String
+    private var serialNumber: String = ""
     private var ipAddress: String = ""
     private var tcpPort: Int = 0
 }

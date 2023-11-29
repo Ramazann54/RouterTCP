@@ -99,12 +99,15 @@
         android:id="@+id/invalidTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Введены некорректные данные"
-        android:textColor="#red"
+        android:text="@string/incorrect_date"
+        android:textColor="@color/red"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serial_number" />
+        app:layout_constraintEnd_toEndOf="@+id/cancel_button"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/changeable_button"
+        app:layout_constraintTop_toBottomOf="@+id/serial_number"
+        app:layout_constraintVertical_bias="0.145" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

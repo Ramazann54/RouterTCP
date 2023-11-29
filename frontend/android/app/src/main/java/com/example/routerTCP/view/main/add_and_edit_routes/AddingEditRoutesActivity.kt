@@ -43,7 +43,7 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
             presenter.onTCPPortTextChanged(tcpPortEditText.text.toString().toInt())
         }
         if(p0 == serialNumberEditText){
-            presenter.onSerialNumberTextChanged(serialNumberEditText.text.toString().toLong())
+            presenter.onSerialNumberTextChanged(serialNumberEditText.text.toString())
         }
         if (p0 == changeableButton) {
             presenter.onChangeableButtonClick()
