@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
 import com.example.routerTCP.model.objects.Route
-import com.example.routerTCP.presenter.MainScreenPresenter
+import com.example.routerTCP.presentation.main.MainScreenPresenter
 import com.example.routerTCP.view.abstractions.IMainScreenView
 import com.example.routerTCP.view.main.add_and_edit_routes.AddingEditRoutesActivity
 

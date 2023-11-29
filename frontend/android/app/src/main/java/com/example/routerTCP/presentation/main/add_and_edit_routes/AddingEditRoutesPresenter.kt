@@ -89,6 +89,11 @@ class AddingEditRoutesPresenter :
         view?.setInvalidTextVisibility(false)
         view?.setTCPColor(R.color.black)
     }
+    private fun setupState(){
+        if (){
+
+        }
+    }
 
     override fun onDestroy() {
         view = null
@@ -101,4 +106,10 @@ class AddingEditRoutesPresenter :
     private var serialNumber: String = ""
     private var ipAddress: String = ""
     private var tcpPort: Int = 0
+
+    private var currentActivityState = EDIT_ROUTES_STATE
+
+    companion object{
+        private const val EDIT_ROUTES_STATE = 0 //Редактирование пути
+    }
 }
