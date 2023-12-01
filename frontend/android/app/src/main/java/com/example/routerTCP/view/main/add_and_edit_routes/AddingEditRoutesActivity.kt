@@ -49,9 +49,8 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
         if(p0 == ipAddressEditText){
             presenter.onIPTextChanged(ipAddressEditText.text.toString())
         }
-        // TODO: try?
         if(p0 == tcpPortEditText){
-            presenter.onTCPPortTextChanged(tcpPortEditText.text.toString().toInt())
+            presenter.onTCPPortTextChanged(tcpPortEditText.text.toString())
         }
         if(p0 == serialNumberEditText){
             presenter.onSerialNumberTextChanged(serialNumberEditText.text.toString())
@@ -94,15 +93,19 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
     }
 
     override fun setIPColor(color: Int) {
-        ipAddressTextView.setTextColor(color)
+        ipAddressTextView.setTextColor(getColor(color))
     }
 
     override fun setTCPColor(color: Int) {
-        tcpPortTextView.setTextColor(color)
+        tcpPortTextView.setTextColor(getColor(color))
     }
 
     override fun setSNColor(color: Int) {
-        serialNumberTextView.setTextColor(color)
+        serialNumberTextView.setTextColor(getColor(color))
+    }
+
+    override fun setSerialNumber(sn: String) {
+        serialNumberEditText.setText(sn)
     }
 
     override fun finishActivity() {

@@ -17,4 +17,6 @@ interface IAddingEditRoutesView {
     fun setTCPColor(color: Int)
 
     fun setSNColor(color: Int)
+
+    fun setSerialNumber(sn: String)
 }

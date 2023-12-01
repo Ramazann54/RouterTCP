@@ -33,19 +33,22 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
 
 
     override fun startAddEditRouteActivity(route: Route) {
-        val intent = Intent(this, AddingEditRoutesActivity::class.java)
-        intent.putExtra("EDIT_ROUTES_STATE", 1)
+        startAddEditActivity(0)
         // TODO: добавлять рут в сервис
-        startActivity(intent)
     }
 
     override fun onClick(view: View?) {
         if (view === addButton) {
-            //todo: переход на следующую активити
+            presenter.onAddButtonClick()
+            startAddEditActivity(1)
         }
     }
 
-
+    private fun startAddEditActivity(value: Int){
+        val intent = Intent(this, AddingEditRoutesActivity::class.java)
+        intent.putExtra("STATE", value)
+        startActivity(intent)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

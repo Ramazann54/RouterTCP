@@ -18,6 +18,10 @@ class MainScreenPresenter(): IPresenter<IMainScreenView> {
         view?.startAddEditRouteActivity(routes[position])
     }
 
+    fun onAddButtonClick(){
+
+    }
+
     override fun onViewCreated(view: IMainScreenView) {
         this.view = view
     }

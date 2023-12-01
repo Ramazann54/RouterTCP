@@ -17,7 +17,7 @@ class AddingEditRoutesPresenter :
     }
 
     fun onChangeableButtonClick() {
-        if(activityParam == "Add"){
+        if(currentActivityState == 1){
             //Если добавляем
             var success = editTextsCheck()
             if(serialNumber.isBlank()){
@@ -28,6 +28,7 @@ class AddingEditRoutesPresenter :
             }
             if(success){
                 // TODO: добавляем в сервис новый путь с такими данными
+                // TODO: suspend будет вызываться здесь (+сделать делэй пока что)
             }else{
                 view?.setInvalidTextVisibility(true)
             }
@@ -35,6 +36,7 @@ class AddingEditRoutesPresenter :
             //Если редактируем
             if(editTextsCheck()){
                 // TODO: изменять в сервисе путь на такие данные
+                // TODO: сделать делэй
             }else{
                 view?.setInvalidTextVisibility(true)
             }
@@ -43,14 +45,13 @@ class AddingEditRoutesPresenter :
 
     private fun editTextsCheck(): Boolean {
         var success = true
-        // TODO: добавить проверку ip
-        if(ipAddress.isBlank()){
+        if(ipAddress.isBlank() || !isValidIP(ipAddress)){
             success = false
             view?.setIPColor(R.color.red)
         }else{
             view?.setIPColor(R.color.black)
         }
-        if(tcpPort !in 1 .. 65535){
+        if(tcpPort.isBlank() || tcpPort.toInt() !in 1 .. 65535){
             success = false
             view?.setTCPColor(R.color.red)
         }else{
@@ -58,6 +59,13 @@ class AddingEditRoutesPresenter :
         }
         return success
     }
+
+    private fun isValidIP(ip: String): Boolean =
+        ip.toRegex() ==
+                Regex(
+                    """/(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)${'$'}/"""
+                )
+
 
     fun onSerialNumberTextChanged(sn: String){
         serialNumber = sn
@@ -71,7 +79,8 @@ class AddingEditRoutesPresenter :
         view?.setIPColor(R.color.black)
     }
 
-    fun onTCPPortTextChanged(tcp: Int){
+    fun onTCPPortTextChanged(tcp: String){
+        //todo тут проверять уже правильно ли стринг или нет
         tcpPort = tcp
         view?.setInvalidTextVisibility(false)
         view?.setTCPColor(R.color.black)
@@ -96,6 +105,7 @@ class AddingEditRoutesPresenter :
         if (currentActivityState == EDIT_ROUTES_STATE){
             view?.setChangeableButtonText("Редактировать")
             view?.setEnabledSerialNumberEditText(false)
+            view?.setSerialNumber("06062002")
             view?.setHeader("Редактирование пути")
         }else{
             view?.setChangeableButtonText("Добавить")
@@ -114,7 +124,7 @@ class AddingEditRoutesPresenter :
     //String
     private var serialNumber: String = ""
     private var ipAddress: String = ""
-    private var tcpPort: Int = 0
+    private var tcpPort: String = ""
 
     private var currentActivityState = EDIT_ROUTES_STATE
 
