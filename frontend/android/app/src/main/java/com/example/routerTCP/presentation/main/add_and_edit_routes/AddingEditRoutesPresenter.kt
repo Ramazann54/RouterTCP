@@ -1,6 +1,7 @@
 package com.example.routerTCP.presentation.main.add_and_edit_routes
 
 import com.example.routerTCP.R
+import com.example.routerTCP.di.App
 import com.example.routerTCP.presentation.abstractions.IPresenter
 import com.example.routerTCP.view.abstractions.add_and_edit_routes.IAddingEditRoutesView
 
@@ -16,7 +17,7 @@ class AddingEditRoutesPresenter :
         view?.finishActivity()
     }
 
-    fun onChangeableButtonClick() {
+    suspend fun onChangeableButtonClick() {
         if(currentActivityState == 1){
             //Если добавляем
             var success = editTextsCheck()
@@ -27,8 +28,14 @@ class AddingEditRoutesPresenter :
                 view?.setSNColor(R.color.black)
             }
             if(success){
+                if(currentActivityState == 0){
+                    App.routesService.editRoute()
+                }else{
+                    App.routesService.addRoute()
+                }
                 // TODO: добавляем в сервис новый путь с такими данными
                 // TODO: suspend будет вызываться здесь (+сделать делэй пока что)
+
             }else{
                 view?.setInvalidTextVisibility(true)
             }

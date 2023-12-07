@@ -8,6 +8,7 @@ import android.view.View.OnClickListener
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+//import androidx.lifecycle.lifecycleScope
 import com.example.routerTCP.R
 import com.example.routerTCP.presentation.main.add_and_edit_routes.AddingEditRoutesPresenter
 import com.example.routerTCP.view.abstractions.add_and_edit_routes.IAddingEditRoutesView
@@ -56,7 +57,9 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
             presenter.onSerialNumberTextChanged(serialNumberEditText.text.toString())
         }
         if (p0 == changeableButton) {
-            presenter.onChangeableButtonClick()
+//            lifecycleScope.launch {
+//                presenter.onChangeableButtonClick()
+//            }
         }
         if (p0 == cancelButton) {
             presenter.onCancelButtonClick()

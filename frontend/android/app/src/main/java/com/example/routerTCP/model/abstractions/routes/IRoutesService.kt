@@ -6,4 +6,8 @@ import com.example.routerTCP.model.objects.Route
 interface IRoutesService {
     val routes: List<Route>
     var currentClickedData: Int
+
+    suspend fun addRoute()
+
+    suspend fun editRoute()
 }
