@@ -9,65 +9,77 @@
         android:id="@+id/CameraButton"
         android:layout_width="163dp"
         android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#000000"
         android:text="Camera"
         app:iconTint="@color/black"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="509dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ScanButton"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/GalleryButton"
         android:layout_width="163dp"
         android:layout_height="58dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#000000"
         android:text="Gallery"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="256dp"
-        tools:layout_editor_absoluteY="509dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ScanButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/QRImageView"
         android:layout_width="249dp"
         android:layout_height="237dp"
+        android:layout_marginBottom="128dp"
+        app:layout_constraintBottom_toTopOf="@+id/ScanButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_qr_scanner"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="238dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="301dp"
         android:layout_height="65dp"
+        android:layout_marginBottom="32dp"
         android:text="authorization"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="149dp"
+        app:layout_constraintBottom_toTopOf="@+id/QRImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/ScanButton"
         android:layout_width="309dp"
         android:layout_height="66dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="#E85800"
         android:text="Scan"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="582dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/ResultText"
-        android:layout_width="108dp"
-        android:layout_height="38dp"
+        android:layout_width="161dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="16dp"
         android:textAlignment="center"
         android:textColor="#E75800"
         android:textSize="20sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="87dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
