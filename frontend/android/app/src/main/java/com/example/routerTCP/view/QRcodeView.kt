@@ -4,7 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.MediaStore
+import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,7 +14,7 @@ import androidx.core.content.ContextCompat
 import com.example.routerTCP.R
 import com.example.routerTCP.presentation.QrcodePresenter
 
-class QRcodeView : AppCompatActivity(), IQRcodeView{
+class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.qrcode_activity)
@@ -21,23 +22,25 @@ class QRcodeView : AppCompatActivity(), IQRcodeView{
         qrImage = findViewById(R.id.QRImageView)
 
         galleryButton = findViewById(R.id.GalleryButton)
-        galleryButton.setOnClickListener{
-            onGalleryClick()
-        }
+        galleryButton.setOnClickListener(this)
 
         cameraButton = findViewById(R.id.CameraButton)
-        cameraButton.setOnClickListener{
-            onCameraClick()
-        }
+        cameraButton.setOnClickListener(this)
 
         scanQRButton = findViewById(R.id.ScanButton)
-        scanQRButton.setOnClickListener{
-            onScanClick()
-        }
+        scanQRButton.setOnClickListener(this)
 
         resultText = findViewById(R.id.ResultText)
 
         presenter.onViewCreated(this)
+    }
+
+    override fun onClick(view: View?) {
+        when (view){
+            galleryButton -> presenter.onGalleryClick()
+            cameraButton -> presenter.onCameraClick()
+            scanQRButton -> presenter.onScanClick()
+        }
     }
 
     override fun requestPermissions(permissions: Array<String>) {
@@ -52,6 +55,8 @@ class QRcodeView : AppCompatActivity(), IQRcodeView{
             requestPermissions(permissions, PERMISSION_REQUEST_CODE)
         }
     }
+
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -70,20 +75,6 @@ class QRcodeView : AppCompatActivity(), IQRcodeView{
         }
     }
 
-    fun onGalleryClick(){
-        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
-    }
-
-    fun onCameraClick(){
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE)
-    }
-
-    fun onScanClick(){
-        presenter.onScanButtonClicked()
-    }
-
     override fun showScanResult(result: String?){
         resultText.text = result
     }
@@ -98,8 +89,6 @@ class QRcodeView : AppCompatActivity(), IQRcodeView{
                 presenter.onPictureChanged(it) } //отдача презентеру, чтоб обновил информацию
         }
     }
-
-
 
 
     private lateinit var galleryButton: Button
