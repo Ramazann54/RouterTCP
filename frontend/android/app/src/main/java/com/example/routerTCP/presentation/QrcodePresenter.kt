@@ -2,13 +2,11 @@ package com.example.routerTCP.presentation
 
 
 import android.Manifest
-import android.content.Intent
 import android.net.Uri
-import android.provider.MediaStore
-import androidx.core.app.ActivityCompat.startActivityForResult
 import com.example.routerTCP.di.App
+import com.example.routerTCP.model.IQRcodeModel
+import com.example.routerTCP.model.QRcodeModel
 import com.example.routerTCP.view.IQRcodeView
-import com.example.routerTCP.view.QRcodeView
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
@@ -37,25 +35,19 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
     }
 
     fun onGalleryClick(){
-        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        //startActivityForResult(galleryIntent, galleryIntent)
+        view?.startGalleryActivity()
     }
 
     fun onCameraClick(){
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        //startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE)
+        view?.startCameraActivity()
     }
 
     fun onScanClick(){
-        //presenter.onScanButtonClicked()
-    }
-
-    fun onScanButtonClicked(){
         val image = InputImage.fromFilePath(App.getContext(), pictureURI)
         val result = scanner.process(image)
             .addOnSuccessListener { barcodes ->
                 for(barcode in barcodes){ //Вроде как по настройкам должен быть список из одного qr кода
-                    //val rawValue = barcode.rawValue
+                    val rawValue = barcode.rawValue
                     this.scannedResult = barcode.rawValue
                 }
                 view?.showScanResult(scannedResult)

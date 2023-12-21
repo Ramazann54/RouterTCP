@@ -4,12 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.routerTCP.R
 import com.example.routerTCP.presentation.QrcodePresenter
@@ -90,6 +92,15 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
         }
     }
 
+    override fun startCameraActivity(){
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE)
+    }
+
+    override fun startGalleryActivity(){
+        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
+    }
 
     private lateinit var galleryButton: Button
     private lateinit var cameraButton: Button
