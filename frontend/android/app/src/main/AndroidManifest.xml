@@ -23,14 +23,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RouterTCP"
         tools:targetApi="31">
+
         <activity
             android:name=".view.QRcodeView"
             android:exported="true">
+
             <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
 
             <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
         <activity
             android:name=".view.main.add_and_edit_routes.AddingEditRoutesActivity"
             android:exported="false">
@@ -38,12 +42,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".view.main.main_screen.MainScreenWithTableActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
@@ -55,6 +59,4 @@
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="barcode"/>
 
-        </activity>
-    </application>
 </manifest>
