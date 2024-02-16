@@ -2,14 +2,15 @@ package com.example.routerTCP.di
 
 import android.app.Application
 import android.content.Context
+import com.example.routerTCP.model.abstractions.routes.IRoutesService
+import com.example.routerTCP.model.services.RoutesService
 
 class App : Application(){
-
     override fun onCreate() {
         //test
         context = applicationContext
         super.onCreate()
-        //service = Service()
+        routesService = RoutesService()
     }
 
     companion object{
@@ -19,5 +20,6 @@ class App : Application(){
             return this.context
         }
         //lateinit var service: IService
+        lateinit var routesService: IRoutesService
     }
 }
