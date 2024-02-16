@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="5dp"
+    android:gravity="center"
     android:orientation="horizontal"
     android:weightSum="4">
 
@@ -10,7 +11,7 @@
         android:id="@+id/ipAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:fontFamily="@font/open_sans_semibold"
         android:layout_weight="1"
         android:textColor="@color/dark_gray_main_text" />
@@ -19,9 +20,8 @@
         android:id="@+id/tcpPort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin = "10dp"
+        android:layout_margin = "5dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="332132"
         android:layout_weight="1"
         android:textColor="@color/dark_gray_main_text" />
 
@@ -29,9 +29,8 @@
         android:id="@+id/serialNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin = "10dp"
+        android:layout_margin = "5dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="332132"
         android:layout_weight="1"
         android:textColor="@color/dark_gray_main_text" />
 
@@ -39,8 +38,7 @@
         android:id="@+id/connectWithDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin = "10dp"
-        android:layout_weight="1"
+        android:layout_margin = "5dp"
         android:background="@drawable/success_device"
         android:visibility="gone" />
 
@@ -48,8 +46,7 @@
         android:id="@+id/connectWithDCS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin = "10dp"
-        android:layout_weight="1"
+        android:layout_margin = "5dp"
         android:background="@drawable/success_ssd"
         android:visibility="gone" />
 
@@ -57,17 +54,16 @@
         android:id="@+id/noConnectWithDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin = "10dp"
-        android:layout_weight="1"
+        android:layout_margin= "5dp"
+        android:visibility="gone"
         android:background="@drawable/error_ssd"
-        android:visibility="gone" />
+        />
 
     <ImageView
         android:id="@+id/noConnectWithDCS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin = "10dp"
-        android:layout_weight="1"
+        android:layout_margin = "5dp"
         android:background="@drawable/error_device"
         android:visibility="gone" />
 

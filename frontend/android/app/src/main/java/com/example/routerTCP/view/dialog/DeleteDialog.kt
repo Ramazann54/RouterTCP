@@ -1,9 +1,25 @@
 package com.example.routerTCP.view.dialog
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.example.routerTCP.presenter.MainScreenPresenter
+import com.example.routerTCP.R
+import com.example.routerTCP.presenter.abstractions.IDeleteDialogPresenter
+import com.example.routerTCP.view.abstractions.IDeleteDialogView
+import com.example.routerTCP.view.abstractions.IDialogView
 
-class DeleteDialog () : DialogFragment() {
+class DeleteDialog (presenter: IDeleteDialogPresenter) : MyDialogFragment<IDeleteDialogView>(presenter), IDialogView {
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = super.onCreateView(inflater, container, savedInstanceState)
+        val dialogView = layoutInflater.inflate(R.layout.delete_dialog_fragment, contentDialogLayout)
+        return view
+    }
 
 }
