@@ -1,10 +1,10 @@
-package com.example.routerTCP.view.main_screen
+package com.example.routerTCP.view.main.main_screen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
-import com.example.routerTCP.presenter.MainScreenPresenter
+import com.example.routerTCP.presentation.main.MainScreenPresenter
 
 class RoutesAdapter(private val presenter: MainScreenPresenter): RecyclerView.Adapter<RoutesViewHolder>(){
 

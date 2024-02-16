@@ -1,4 +1,4 @@
-package com.example.routerTCP.view.main_screen
+package com.example.routerTCP.view.main.main_screen
 
 import android.view.MenuItem
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
 import com.example.routerTCP.model.objects.ConnectionStatus
 import com.example.routerTCP.model.objects.Route
-import com.example.routerTCP.presenter.MainScreenPresenter
+import com.example.routerTCP.presentation.main.MainScreenPresenter
 
 
 // @Suppress("UNUSED_EXPRESSION")

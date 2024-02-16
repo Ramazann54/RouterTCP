@@ -4,5 +4,5 @@ import com.example.routerTCP.model.objects.Route
 
 interface IMainScreenView {
 
-    fun startAddRouteActivity(route: Route)
+    fun startAddEditRouteActivity(route: Route)
 }

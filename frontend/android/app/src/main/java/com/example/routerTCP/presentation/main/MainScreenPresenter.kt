@@ -1,8 +1,8 @@
-package com.example.routerTCP.presenter
+package com.example.routerTCP.presentation.main
 
 import com.example.routerTCP.di.App
 import com.example.routerTCP.model.objects.Route
-import com.example.routerTCP.presenter.abstractions.IPresenter
+import com.example.routerTCP.presentation.abstractions.IPresenter
 import com.example.routerTCP.view.abstractions.IMainScreenView
 
 class MainScreenPresenter(): IPresenter<IMainScreenView> {
@@ -15,7 +15,11 @@ class MainScreenPresenter(): IPresenter<IMainScreenView> {
     fun onItemClick(position: Int){
         currentClickedPosition = position
         App.routesService.currentClickedData = position
-        view?.startAddRouteActivity(routes[position])
+        view?.startAddEditRouteActivity(routes[position])
+    }
+
+    fun onAddButtonClick(){
+
     }
 
     override fun onViewCreated(view: IMainScreenView) {
