@@ -33,7 +33,6 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
         scanQRButton.setOnClickListener(this)
 
         resultText = findViewById(R.id.ResultText)
-
         presenter.onViewCreated(this)
     }
 
@@ -108,6 +107,7 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
     private lateinit var qrImage: ImageView
     private lateinit var resultText: TextView
     private val presenter = QrcodePresenter()
+
     companion object{
         private const val PERMISSION_REQUEST_CODE = 0
         private const val GALLERY_REQUEST_CODE = 1
