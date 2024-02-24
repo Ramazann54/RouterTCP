@@ -3,10 +3,14 @@ package com.example.routerTCP.presentation
 
 import android.Manifest
 import android.net.Uri
+import com.example.routerTCP.di.App
+import com.example.routerTCP.model.IQRcodeModel
+import com.example.routerTCP.model.QRcodeModel
 import com.example.routerTCP.view.IQRcodeView
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
+import com.google.mlkit.vision.common.InputImage
 
 class QrcodePresenter : IPresenter<IQRcodeView> {
     override fun onViewCreated(view: IQRcodeView) {
@@ -39,9 +43,6 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
     }
 
     fun onScanClick(){
-        view?.startMainScreenWithTableActivity()
-
-        /*
         val image = InputImage.fromFilePath(App.getContext(), pictureURI)
         val result = scanner.process(image)
             .addOnSuccessListener { barcodes ->
@@ -54,7 +55,6 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
             .addOnFailureListener {e->
                 // Task failed with an exception
             }
-            */
     }
 
     private var view: IQRcodeView? = null

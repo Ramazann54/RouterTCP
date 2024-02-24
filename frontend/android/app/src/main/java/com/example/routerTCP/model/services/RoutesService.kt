@@ -14,7 +14,19 @@ class RoutesService() : IRoutesService {
         Route("12345678", 1234, 5689784, ConnectionStatus.ConnectWithDCS),
         Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDCS),
         Route("12345678", 1234, 5689784, ConnectionStatus.ConnectWithDevice),
-        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice)
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice),
+
         )
 
     override var currentClickedData: Int
