@@ -7,15 +7,18 @@
     <string name="connection_status">Статус</string>
     <string name="upButton">Добавить</string>
     <string name="downButton">Отмена</string>
-    <string name="tcpPortText">TCP-порт</string>
-    <string name="ipAddressText">IP-адрес</string>
-    <string name="serialNumberText">Серийный номер</string>
     <string name="spaces">"   "</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="incorrect_date">Введены некорректные данные</string>
     <string name="delete">Удалить</string>
     <string name="edit">Редактировать</string>
     <string name="delete_confirmation">Вы уверены, что хотите удалить маршрут?</string>
     <string name="cancel">Отмена</string>
+    <string name="edit_route">Редактирование маршрута</string>
+    <string name="invalid_serial">Неправильно введен серийный номер</string>
+    <string name="invalid_tcp">Неправильно введен TCP-порт</string>
+    <string name="invalid_ip">Неправильно введен IP-адрес</string>
+    <string name="start_text">Для входа в приложение отсканируйте ваш QR Code</string>
+    <string name="scan">Отсканировать</string>
+    <string name="camera_qr">Наведите камеру на QR-код</string>
 
 </resources>

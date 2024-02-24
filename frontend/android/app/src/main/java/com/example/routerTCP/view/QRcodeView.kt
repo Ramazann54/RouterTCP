@@ -34,7 +34,6 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
         scanQRButton.setOnClickListener(this)
 
         resultText = findViewById(R.id.ResultText)
-
         presenter.onViewCreated(this)
     }
 
@@ -44,11 +43,6 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
             cameraButton -> presenter.onCameraClick()
             scanQRButton -> presenter.onScanClick()
         }
-    }
-
-    override fun startMainScreenWithTableActivity(){
-        val intent = Intent(this, MainScreenWithTableActivity::class.java)
-        startActivity(intent)
     }
 
     override fun requestPermissions(permissions: Array<String>) {
@@ -108,12 +102,23 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
         startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
     }
 
+    override fun startMainScreenActivity() {
+        val intent = Intent(this, MainScreenWithTableActivity::class.java)
+        startActivity(intent)
+    }
+
+    /*   override fun startMainScreenActivity() {
+           val intent = Intent(this, QRCodeScanActivity::class.java)
+           startActivity(intent)
+       }
+   */
     private lateinit var galleryButton: Button
     private lateinit var cameraButton: Button
     private lateinit var scanQRButton: Button
     private lateinit var qrImage: ImageView
     private lateinit var resultText: TextView
     private val presenter = QrcodePresenter()
+
     companion object{
         private const val PERMISSION_REQUEST_CODE = 0
         private const val GALLERY_REQUEST_CODE = 1
