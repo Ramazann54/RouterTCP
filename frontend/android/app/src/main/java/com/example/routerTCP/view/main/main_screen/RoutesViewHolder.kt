@@ -25,6 +25,7 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
 
         itemView.setOnLongClickListener {
             showPopup(itemView)
+            //todo ASYNC
             true
         }
     }
@@ -40,6 +41,7 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
                 }
                 R.id.edit -> {
                     presenter.onItemClick(adapterPosition)
+                    //todo ASYNC
                 }
             }
             return@OnMenuItemClickListener true

@@ -15,6 +15,7 @@ class RoutesAdapter(private val presenter: MainScreenPresenter): RecyclerView.Ad
 
     override fun onBindViewHolder(holder: RoutesViewHolder, position: Int) {
         holder.onBind(presenter.routes[position])
+        //todo ASYNC
         presenter.onBindViewItem()
     }
 

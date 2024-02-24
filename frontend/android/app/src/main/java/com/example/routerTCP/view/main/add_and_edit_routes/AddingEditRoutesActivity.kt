@@ -33,7 +33,7 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
         invalidTextView = findViewById(R.id.invalidTextView)
 
         val currentActivityState =
-            savedInstanceState?.getInt(CURRENT_ACTIVITY_STATE_PARAM_NAME) ?: 0
+            savedInstanceState?.getInt(CURRENT_ACTIVITY_STATE_PARAM_NAME) ?: 1
 
         presenter.setActivityState(currentActivityState)
         presenter.onViewCreated(this)

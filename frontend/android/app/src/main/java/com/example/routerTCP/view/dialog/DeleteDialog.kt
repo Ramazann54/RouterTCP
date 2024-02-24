@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import com.example.routerTCP.R
-import com.example.routerTCP.presenter.abstractions.IDeleteDialogPresenter
+import com.example.routerTCP.presentation.abstractions.IDeleteDialogPresenter
 import com.example.routerTCP.view.abstractions.IDeleteDialogView
 import com.example.routerTCP.view.abstractions.IDialogView
 

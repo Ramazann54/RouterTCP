@@ -1,4 +1,4 @@
-package com.example.routerTCP.presenter.abstractions
+package com.example.routerTCP.presentation.abstractions
 
 import com.example.routerTCP.view.abstractions.IDialogView
 
