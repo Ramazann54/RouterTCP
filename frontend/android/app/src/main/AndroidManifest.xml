@@ -31,6 +31,7 @@
 
             <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
         <activity
             android:name=".view.main.add_and_edit_routes.AddingEditRoutesActivity"
             android:exported="false">
@@ -49,12 +50,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-    </application>
 
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="barcode"/>
-
-        </activity>
     </application>
 </manifest>
