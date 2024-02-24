@@ -8,7 +8,7 @@
     tools:context=".view.main.add_and_edit_routes.AddingEditRoutesActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/header_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/cancel_button"

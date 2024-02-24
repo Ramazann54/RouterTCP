@@ -40,7 +40,7 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
 
     override fun onClick(view: View?) {
         if (view === addButton) {
-            presenter.onAddButtonClick(0)
+            presenter.onAddButtonClick(1)
         }
     }
 

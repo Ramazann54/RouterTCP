@@ -17,7 +17,7 @@ class MainScreenPresenter(): IPresenter<IMainScreenView> {
         App.routesService.currentClickedData = position
         view?.startAddEditRouteActivity(routes[position])
         //todo ASYNC
-        view?.startAddEditActivity(1)
+        view?.startAddEditActivity(0)
     }
 
     fun onAddButtonClick(value : Int){

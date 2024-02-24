@@ -31,9 +31,13 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
         serialNumberEditText = findViewById(R.id.serial_number)
         serialNumberTextView = findViewById(R.id.serial_number_text_view)
         invalidTextView = findViewById(R.id.invalidIPAddress)
+        header = findViewById(R.id.header_title)
 
-        val currentActivityState =
-            savedInstanceState?.getInt(CURRENT_ACTIVITY_STATE_PARAM_NAME) ?: 1
+        var currentActivityState = -10
+        val bundle :Bundle ?=intent.extras
+        if (bundle!=null){
+            currentActivityState = bundle.getInt("STATE")
+        }
 
         presenter.setActivityState(currentActivityState)
         presenter.onViewCreated(this)
@@ -80,7 +84,7 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
     }
 
     override fun setHeader(header: String) {
-        supportActionBar?.title = header
+        this.header.text = header
     }
 
     override fun setEnabledSerialNumberEditText(boolean: Boolean) {
@@ -127,6 +131,7 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
     private lateinit var serialNumberEditText: EditText
     private lateinit var serialNumberTextView: TextView
     private lateinit var invalidTextView: TextView
+    private lateinit var header: TextView
 
     private lateinit var cancelButton: AppCompatButton
 

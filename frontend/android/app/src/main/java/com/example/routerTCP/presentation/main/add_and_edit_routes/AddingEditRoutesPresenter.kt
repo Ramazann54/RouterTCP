@@ -108,7 +108,7 @@ class AddingEditRoutesPresenter :
         }
     }
 
-    private fun setupState(){
+     fun setupState(){
         if (currentActivityState == EDIT_ROUTES_STATE){
             view?.setChangeableButtonText("Редактировать")
             view?.setEnabledSerialNumberEditText(false)
