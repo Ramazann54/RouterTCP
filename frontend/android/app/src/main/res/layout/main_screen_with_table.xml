@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".view.main.main_screen.MainScreenWithTableActivity">
+
 
 
     <TextView
@@ -14,25 +16,27 @@
         android:layout_margin="20dp"
         android:fontFamily="@font/open_sans_semibold"
         android:text="@string/current_routes"
-        android:textColor="@color/dark_gray_main_text"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/dark_blue"
+        android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/line"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
-        android:background="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/currentRoutesTextView" />
+        android:src="@drawable/background_white_rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentRoutesTextView" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="25dp"
         android:background="@drawable/route_table_rec_background"
         android:elevation="10dp"
         android:gravity="center_horizontal"
@@ -40,7 +44,7 @@
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line">
+        app:layout_constraintTop_toTopOf="@+id/imageView">
 
         <LinearLayout
             android:layout_width="wrap_content"

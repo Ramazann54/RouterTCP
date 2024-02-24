@@ -30,7 +30,7 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
         tcpPortTextView = findViewById(R.id.tcp_port_text_view)
         serialNumberEditText = findViewById(R.id.serial_number)
         serialNumberTextView = findViewById(R.id.serial_number_text_view)
-        invalidTextView = findViewById(R.id.invalidTextView)
+        invalidTextView = findViewById(R.id.invalidIPAddress)
 
         val currentActivityState =
             savedInstanceState?.getInt(CURRENT_ACTIVITY_STATE_PARAM_NAME) ?: 0

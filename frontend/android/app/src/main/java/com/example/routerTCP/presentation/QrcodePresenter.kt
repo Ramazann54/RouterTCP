@@ -41,18 +41,19 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
     }
 
     fun onScanClick(){
-        val image = InputImage.fromFilePath(App.getContext(), pictureURI)
-        val result = scanner.process(image)
-            .addOnSuccessListener { barcodes ->
-                for(barcode in barcodes){ //Вроде как по настройкам должен быть список из одного qr кода
-                    val rawValue = barcode.rawValue
-                    this.scannedResult = barcode.rawValue
-                }
-                view?.showScanResult(scannedResult)
-            }
-            .addOnFailureListener {e->
-                // Task failed with an exception
-            }
+        view?.startMainScreenActivity()
+//        val image = InputImage.fromFilePath(App.getContext(), pictureURI)
+//        val result = scanner.process(image)
+//            .addOnSuccessListener { barcodes ->
+//                for(barcode in barcodes){ //Вроде как по настройкам должен быть список из одного qr кода
+//                    val rawValue = barcode.rawValue
+//                    this.scannedResult = barcode.rawValue
+//                }
+//                view?.showScanResult(scannedResult)
+//            }
+//            .addOnFailureListener {e->
+//                // Task failed with an exception
+//            }
     }
 
     private var view: IQRcodeView? = null

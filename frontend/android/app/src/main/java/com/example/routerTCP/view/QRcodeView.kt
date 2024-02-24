@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.routerTCP.R
 import com.example.routerTCP.presentation.QrcodePresenter
+import com.example.routerTCP.view.main.main_screen.MainScreenWithTableActivity
 
 class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,6 +102,16 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
         startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
     }
 
+    override fun startMainScreenActivity() {
+        val intent = Intent(this, MainScreenWithTableActivity::class.java)
+        startActivity(intent)
+    }
+
+    /*   override fun startMainScreenActivity() {
+           val intent = Intent(this, QRCodeScanActivity::class.java)
+           startActivity(intent)
+       }
+   */
     private lateinit var galleryButton: Button
     private lateinit var cameraButton: Button
     private lateinit var scanQRButton: Button

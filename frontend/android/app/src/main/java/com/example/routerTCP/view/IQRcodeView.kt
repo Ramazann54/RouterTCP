@@ -5,4 +5,6 @@ interface IQRcodeView {
     fun showScanResult(result: String?)
     fun startCameraActivity()
     fun startGalleryActivity()
+
+    fun startMainScreenActivity()
 }
