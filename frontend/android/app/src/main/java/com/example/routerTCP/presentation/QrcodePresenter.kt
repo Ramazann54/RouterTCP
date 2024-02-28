@@ -34,10 +34,12 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
 
     fun onGalleryClick(){
         view?.startGalleryActivity()
+        onScanClick()
     }
 
     fun onCameraClick(){
         view?.startCameraActivity()
+        //onScanClick()
     }
 
     fun onScanClick(){
@@ -68,7 +70,8 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
         private val NEEDED_PERMISSIONS = arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.READ_MEDIA_IMAGES
         )
         private const val GALLERY_REQUEST_CODE = 1
         private const val CAMERA_REQUEST_CODE = 2
