@@ -2,10 +2,10 @@ package com.example.routerTCP.presentation.main
 
 import com.example.routerTCP.di.App
 import com.example.routerTCP.model.objects.Route
-import com.example.routerTCP.presentation.abstractions.IPresenter
+import com.example.routerTCP.presentation.abstractions.ISuspendPresenter
 import com.example.routerTCP.view.abstractions.IMainScreenView
 
-class MainScreenPresenter(): IPresenter<IMainScreenView> {
+class MainScreenPresenter : ISuspendPresenter<IMainScreenView> {
 
 
     fun onBindViewItem(){
@@ -14,7 +14,6 @@ class MainScreenPresenter(): IPresenter<IMainScreenView> {
 
     fun onItemClick(position: Int){
         currentClickedPosition = position
-        App.routesService.currentClickedData = position
         view?.startAddEditRouteActivity(routes[position])
     }
 
@@ -22,21 +21,21 @@ class MainScreenPresenter(): IPresenter<IMainScreenView> {
 
     }
 
-    override fun onViewCreated(view: IMainScreenView) {
+    override suspend fun onViewCreated(view: IMainScreenView) {
         this.view = view
+        val r = routeService.loadRoutes(0u, 10u)
+        routes.addAll(r)
     }
 
-    override fun onDestroy() {
+    override suspend fun onDestroy() {
         view = null
     }
 
+    val routes: MutableList<Route> = mutableListOf()
+    val routesCount : Int
+        get() = routes.size
 
     private var view: IMainScreenView? = null
-    var routes: List<Route> = App.routesService.routes
-    var routesCount : Int = routes.size
-
+    private val routeService = App.routesService
     private var currentClickedPosition: Int = -1
-
-
-
 }
