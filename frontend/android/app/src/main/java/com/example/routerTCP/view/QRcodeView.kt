@@ -130,6 +130,8 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
                 for(barcode in barcodes) {
                     val rawValue = barcode.rawValue
                     if (rawValue.toString().contains("НПО МИР")) {
+                        //TODO: учесть при рефакторинге кода
+                        //Добавил эту строку чтобы не открывалось несколько главных экранов
                         imageAnalysis.clearAnalyzer()
                         processCameraProvider.shutdown()
                         startMainScreenActivity()
