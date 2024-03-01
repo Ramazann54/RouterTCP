@@ -29,9 +29,9 @@ class AddingEditRoutesPresenter :
             }
             if(success){
                 if(currentActivityState == 0){
-                    App.routesService.editRoute()
+                    //App.routesService.editRoute()
                 }else{
-                    App.routesService.addRoute()
+                    //App.routesService.addRoute()
                 }
                 // TODO: добавляем в сервис новый путь с такими данными
                 // TODO: suspend будет вызываться здесь (+сделать делэй пока что)
