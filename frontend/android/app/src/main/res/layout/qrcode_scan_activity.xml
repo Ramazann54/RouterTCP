@@ -32,13 +32,13 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/BackButton"
+        android:id="@+id/backButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_margin="20dp"
         android:background="@drawable/back_arrow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/GalleryButton"
@@ -47,6 +47,6 @@
         android:layout_margin="20dp"
         android:background="@drawable/galery"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

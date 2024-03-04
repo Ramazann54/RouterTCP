@@ -42,6 +42,10 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
         //onScanClick()
     }
 
+    fun onBackButtonClick(){
+        view?.startBackActivity()
+    }
+
     fun onScanClick(){
         view?.startMainScreenActivity()
 //        val image = InputImage.fromFilePath(App.getContext(), pictureURI)

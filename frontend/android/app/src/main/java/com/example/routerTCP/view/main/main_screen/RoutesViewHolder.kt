@@ -27,6 +27,7 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
             showPopup(itemView)
             true
         }
+
     }
 
     private fun showPopup(view: View) {

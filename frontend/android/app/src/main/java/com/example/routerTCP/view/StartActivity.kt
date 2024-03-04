@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.routerTCP.R
+import com.example.routerTCP.view.main.main_screen.MainScreenWithTableActivity
 
 class StartActivity: AppCompatActivity(), OnClickListener {
     @SuppressLint("MissingInflatedId")
@@ -43,10 +44,15 @@ class StartActivity: AppCompatActivity(), OnClickListener {
         Toast.makeText(this, "asdasdasd", Toast.LENGTH_SHORT).show()
     }
 
+     private fun startMainScreenActivity() {
+        val intent = Intent(this, MainScreenWithTableActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun onClick(view: View?) {
         when (view){
             scanButton -> xd()
-            test -> xdd()
+            test -> startMainScreenActivity()
         }
     }
 

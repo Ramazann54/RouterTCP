@@ -23,6 +23,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import com.example.routerTCP.R
 import com.example.routerTCP.databinding.QrcodeScanActivityBinding
+//import com.example.routerTCP.databinding.QrcodeScanActivityBinding
 import com.example.routerTCP.presentation.QrcodePresenter
 import com.example.routerTCP.view.main.main_screen.MainScreenWithTableActivity
 import com.google.common.util.concurrent.ListenableFuture
@@ -40,13 +41,20 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestPermissions(NEEDED_PERMISSIONS)
+
+        setContentView(R.layout.qrcode_scan_activity)
+
         binding = QrcodeScanActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         galleryButton = findViewById(R.id.GalleryButton)
         galleryButton.setOnClickListener(this)
 
+        backButton = findViewById(R.id.backButton)
+        backButton.setOnClickListener(this)
+
         previewView = findViewById(R.id.cameraPreview)
+
 
         cameraSelector = CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
@@ -65,6 +73,7 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
             galleryButton -> presenter.onGalleryClick()
             cameraButton -> presenter.onCameraClick()
             scanQRButton -> presenter.onScanClick()
+            backButton -> presenter.onBackButtonClick()
         }
     }
 
@@ -112,7 +121,7 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
          val options = BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_QR_CODE).build()
          val scanner = BarcodeScanning.getClient(options)
 
-        imageAnalysis = ImageAnalysis.Builder().setTargetRotation(binding.cameraPreview.display.rotation).build()
+    //    imageAnalysis = ImageAnalysis.Builder().setTargetRotation(binding.cameraPreview.display.rotation).build()
         val cameraExecutor = Executors.newSingleThreadExecutor()
         imageAnalysis.setAnalyzer(cameraExecutor){imageProxy ->
             processImageProxy(scanner, imageProxy)
@@ -165,8 +174,13 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
         startActivity(intent)
     }
 
+    override fun startBackActivity() {
+        onBackPressedDispatcher.onBackPressed()
+    }
+
 
     private lateinit var cameraButton: Button
+    private lateinit var backButton: Button
     private lateinit var scanQRButton: Button
     private lateinit var resultText: TextView
     private lateinit var buttonTEST: Button
