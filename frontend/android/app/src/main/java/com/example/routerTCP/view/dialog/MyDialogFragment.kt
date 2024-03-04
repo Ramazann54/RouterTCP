@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.DialogFragment
 import com.example.routerTCP.R
-import com.example.routerTCP.presenter.abstractions.IDialogPresenter
+import com.example.routerTCP.presentation.abstractions.IDialogPresenter
 import com.example.routerTCP.view.abstractions.IDialogView
 
 open class MyDialogFragment<TDialogView : IDialogView>(private val presenter: IDialogPresenter<TDialogView>) :
