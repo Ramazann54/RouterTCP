@@ -30,7 +30,7 @@ class RoutesService() : IRoutesService {
             delay(delayInterval)
             routes[route.serialNumber.toString()] = route
         }
-    }
+}
 
     override suspend fun getRoute(serialNumber: String): Route {
         return withContext(Dispatchers.IO) {

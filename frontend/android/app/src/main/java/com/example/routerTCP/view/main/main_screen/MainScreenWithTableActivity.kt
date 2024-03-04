@@ -14,6 +14,7 @@ import com.example.routerTCP.R
 import com.example.routerTCP.model.objects.Route
 import com.example.routerTCP.presentation.main.MainScreenPresenter
 import com.example.routerTCP.view.abstractions.IMainScreenView
+import com.example.routerTCP.view.dialog.MyDialogFragment
 import com.example.routerTCP.view.main.add_and_edit_routes.AddingEditRoutesActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -54,10 +55,14 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
         }
     }
 
-    private fun startAddEditActivity(value: Int){
+    private fun startAddEditActivity(value: Int) {
         val intent = Intent(this, AddingEditRoutesActivity::class.java)
         intent.putExtra("STATE", value)
         startActivity(intent)
+    }
+
+    override fun showDeleteDialog(){
+        dialog.show(supportFragmentManager, "")
     }
 
     override fun onDestroy() {
@@ -66,6 +71,8 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
             presenter.onDestroy()
         }
     }
+
+    private val dialog = MyDialogFragment()
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var addButton: AppCompatButton

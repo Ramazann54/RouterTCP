@@ -3,14 +3,18 @@ package com.example.routerTCP.view.main.main_screen
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
 import com.example.routerTCP.model.objects.ConnectionStatus
 import com.example.routerTCP.model.objects.Route
 import com.example.routerTCP.presentation.main.MainScreenPresenter
+import com.example.routerTCP.view.dialog.MyDialogFragment
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.supervisorScope
 
 
-// @Suppress("UNUSED_EXPRESSION")
 class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
     RecyclerView.ViewHolder(view) {
     fun onBind(route: Route) {
@@ -36,9 +40,7 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
         popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
                 R.id.delete -> {
-                    Toast.makeText(itemView.context, item.title, Toast.LENGTH_SHORT).show()
-                    //Dialog
-                }
+                    presenter.onDeleteClick(adapterPosition) }
                 R.id.edit -> {
                     presenter.onItemClick(adapterPosition)
                 }
@@ -81,6 +83,8 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
     private lateinit var ipAddressTextView: TextView
     private lateinit var tcpPortTextView: TextView
     private lateinit var serialNumberTextView: TextView
+
+
 
     // ImageView - connection status
     private lateinit var connectWithDevice: ImageView
