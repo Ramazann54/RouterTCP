@@ -2,17 +2,16 @@ package com.example.routerTCP.view.main.main_screen
 
 import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.ImageView
+import android.widget.PopupMenu
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
 import com.example.routerTCP.model.objects.ConnectionStatus
 import com.example.routerTCP.model.objects.Route
 import com.example.routerTCP.presentation.main.MainScreenPresenter
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 
-
-// @Suppress("UNUSED_EXPRESSION")
 class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
     RecyclerView.ViewHolder(view) {
     fun onBind(route: Route) {
