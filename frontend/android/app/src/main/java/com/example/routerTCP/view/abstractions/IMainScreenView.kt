@@ -6,4 +6,5 @@ interface IMainScreenView {
 
     fun showDeleteDialog()
     fun startAddEditRouteActivity(route: Route)
+    fun notifyDataCh()
 }

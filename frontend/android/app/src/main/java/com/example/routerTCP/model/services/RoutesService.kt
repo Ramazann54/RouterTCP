@@ -6,6 +6,7 @@ import com.example.routerTCP.model.objects.Route
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import java.lang.UnsupportedOperationException
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -30,7 +31,7 @@ class RoutesService() : IRoutesService {
             delay(delayInterval)
             routes[route.serialNumber.toString()] = route
         }
-}
+    }
 
     override suspend fun getRoute(serialNumber: String): Route {
         return withContext(Dispatchers.IO) {
@@ -54,13 +55,18 @@ class RoutesService() : IRoutesService {
     private val routes: MutableMap<String, Route> = buildMap {
         val offset = 10000
         for (i in 0..50) {
-            put((offset + i).toString(),
-                Route((offset + 1000 + i).toString(),
+            put(
+                (offset + 100 + i).toString(),
+                Route(
+                    (offset + 1000 + i).toString(),
                     50,
                     (offset + 100 + i).toLong(),
-                    ConnectionStatus.values()[i % 4]))
+                    ConnectionStatus.values()[i % 4]
+                )
+            )
         }
-    } as MutableMap<String, Route>
+    }.toMutableMap()
+
 
     private val delayInterval
         get() = Random.nextInt(200..5000).toLong()

@@ -23,7 +23,7 @@ import kotlinx.coroutines.withContext
 
 class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClickListener {
 
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_screen_with_table)
@@ -36,10 +36,6 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
         addButton.setOnClickListener(this)
         lifecycleScope.launch {
             presenter.onViewCreated(this@MainScreenWithTableActivity)
-            withContext(Dispatchers.Main)
-            {
-                adapter.notifyDataSetChanged()
-            }
         }
     }
 
@@ -53,6 +49,10 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
             presenter.onAddButtonClick()
             startAddEditActivity(1)
         }
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    override fun notifyDataCh() {
+        adapter.notifyDataSetChanged()
     }
 
     private fun startAddEditActivity(value: Int) {
@@ -72,11 +72,10 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
         }
     }
 
-    private val dialog = MyDialogFragment()
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var addButton: AppCompatButton
     private val presenter = MainScreenPresenter()
+    private val dialog = MyDialogFragment(presenter)
     private val adapter = RoutesAdapter(presenter)
 }
 

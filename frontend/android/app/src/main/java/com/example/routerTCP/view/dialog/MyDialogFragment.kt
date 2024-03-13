@@ -9,10 +9,12 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.example.routerTCP.R
+import com.example.routerTCP.di.App
 import com.example.routerTCP.presentation.main.MainScreenPresenter
+import com.example.routerTCP.view.main.main_screen.MainScreenWithTableActivity
 import kotlinx.coroutines.launch
 
-open class MyDialogFragment : DialogFragment(), View.OnClickListener{
+open class MyDialogFragment(private val presenter: MainScreenPresenter) : DialogFragment(), View.OnClickListener{
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +35,7 @@ open class MyDialogFragment : DialogFragment(), View.OnClickListener{
         if(view === deleteButton){
             lifecycleScope.launch{
                 presenter.deleteRoute()
+                dismiss()
             }
         }
         if (view === cancelButton){
@@ -43,7 +46,6 @@ open class MyDialogFragment : DialogFragment(), View.OnClickListener{
     private var contentDialogLayout: LinearLayoutCompat? = null
     private var deleteButton: Button? = null
     private var cancelButton: Button? = null
-    private val presenter = MainScreenPresenter()
 
 
 }
