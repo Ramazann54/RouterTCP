@@ -2,15 +2,16 @@ package com.example.routerTCP.presentation
 
 
 import android.Manifest
-import android.net.Uri
-import com.example.routerTCP.di.App
+import android.annotation.SuppressLint
+import androidx.camera.core.ImageProxy
+import com.example.routerTCP.model.IQRcodeModel
 import com.example.routerTCP.view.IQRcodeView
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
 
-class QrcodePresenter : IPresenter<IQRcodeView> {
+class QrcodePresenter(private val model: IQRcodeModel) : IPresenter<IQRcodeView> {
     override fun onViewCreated(view: IQRcodeView) {
         this.view = view
         view.requestPermissions(NEEDED_PERMISSIONS)
@@ -28,47 +29,44 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
         isPermissionsGranted = false
     }
 
-    fun onPictureChanged(uri: Uri) {
-        this.pictureURI = uri
-    }
 
     fun onGalleryClick(){
         view?.startGalleryActivity()
-        onScanClick()
-    }
-
-    fun onCameraClick(){
-        view?.startCameraActivity()
-        //onScanClick()
     }
 
     fun onBackButtonClick(){
         view?.startBackActivity()
     }
-
-    fun onScanClick(){
+    @SuppressLint("UnsafeOptInUsageError", "RestrictedApi")
+    fun onScanClick(imageProxy: ImageProxy){
         view?.startMainScreenActivity()
-//        val image = InputImage.fromFilePath(App.getContext(), pictureURI)
-//        val result = scanner.process(image)
-//            .addOnSuccessListener { barcodes ->
-//                for(barcode in barcodes){ //Вроде как по настройкам должен быть список из одного qr кода
-//                    val rawValue = barcode.rawValue
-//                    this.scannedResult = barcode.rawValue
-//                }
-//                view?.showScanResult(scannedResult)
-//            }
-//            .addOnFailureListener {e->
-//                // Task failed with an exception
-//            }
+        val inputImage = InputImage.fromMediaImage(imageProxy.image!!, imageProxy.imageInfo.rotationDegrees)
+
+        barcodeScanner.process(inputImage).addOnSuccessListener { barcodes->
+            if (barcodes.isNotEmpty()){
+                for(barcode in barcodes) {
+                    val rawValue = barcode.rawValue
+                    if (rawValue != null && model.connect(rawValue)) {
+                        view?.endScanProcess()
+                    } else {
+                        view?.toastMessage(0)
+                    }
+                }
+            }
+        }.addOnFailureListener{
+            it.printStackTrace()
+            view?.toastMessage(-1)
+        }.addOnCompleteListener{
+            imageProxy.close()
+        }
     }
 
     private var view: IQRcodeView? = null
-    private lateinit var pictureURI: Uri
+    //private var model: IQRcodeModel? = null
     private var isPermissionsGranted = false
-    private var scannedResult: String? = null
 
     private val options = BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_QR_CODE).build()
-    private val scanner = BarcodeScanning.getClient(options)
+    private val barcodeScanner = BarcodeScanning.getClient(options)
 
     companion object{
         private val NEEDED_PERMISSIONS = arrayOf(
@@ -77,7 +75,5 @@ class QrcodePresenter : IPresenter<IQRcodeView> {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.READ_MEDIA_IMAGES
         )
-        private const val GALLERY_REQUEST_CODE = 1
-        private const val CAMERA_REQUEST_CODE = 2
     }
 }
