@@ -42,23 +42,23 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
         }
     }
 
-    override fun startAddEditRouteActivity(route: Route) {
-//        startAddEditActivity(0)
-        // TODO: добавлять рут в сервис
+    override fun startAddingActivity(){
+        val intent = Intent(this, AddingEditRoutesActivity::class.java)
+        intent.putExtra("STATE", 1)
+        startActivity(intent)
+    }
 
-        //todo ASYNC
+    override fun startEditingActivity(routeSN: String){
+        val intent = Intent(this, AddingEditRoutesActivity::class.java)
+        intent.putExtra("STATE", 0)
+        intent.putExtra("SERIAL_NUMBER", routeSN)
+        startActivity(intent)
     }
 
     override fun onClick(view: View?) {
         if (view === addButton) {
-            presenter.onAddButtonClick(1)
+            presenter.onAddButtonClick()
         }
-    }
-
-    override fun startAddEditActivity(value: Int){
-        val intent = Intent(this, AddingEditRoutesActivity::class.java)
-        intent.putExtra("STATE", value)
-        startActivity(intent)
     }
 
     override fun onDestroy() {

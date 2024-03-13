@@ -41,14 +41,18 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
         header = findViewById(R.id.header_title)
 
         var currentActivityState = -10
+        var currentRouteSN = "space"
         val bundle: Bundle? = intent.extras
         if (bundle != null) {
             currentActivityState = bundle.getInt("STATE")
+            currentRouteSN = bundle.getString("SERIAL_NUMBER").toString()
         }
-
         presenter.setActivityState(currentActivityState)
+        presenter.setRouteSerialNumber(currentRouteSN)
         presenter.onViewCreated(this)
-        presenter.onRestoreCurrentActivityState(currentActivityState)
+        lifecycleScope.launch {
+            presenter.onRestoreCurrentActivityState(currentActivityState)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {

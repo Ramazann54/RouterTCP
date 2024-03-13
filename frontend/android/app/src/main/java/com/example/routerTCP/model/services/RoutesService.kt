@@ -14,7 +14,7 @@ class RoutesService() : IRoutesService {
     override suspend fun addRoute(route: Route) {
         withContext(Dispatchers.IO) {
             delay(delayInterval)
-            routes[route.serialNumber.toString()] = route
+            routes.put(route.serialNumber.toString(), route)
         }
     }
 

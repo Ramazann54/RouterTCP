@@ -19,7 +19,6 @@ class App : Application(){
         fun getContext(): Context {
             return this.context
         }
-        //lateinit var service: IService
         lateinit var routesService: IRoutesService
     }
 }

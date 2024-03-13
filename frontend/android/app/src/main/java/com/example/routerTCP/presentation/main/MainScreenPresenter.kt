@@ -12,16 +12,14 @@ class MainScreenPresenter : ISuspendPresenter<IMainScreenView> {
 
     }
 
+    // TODO: suspend
     fun onItemClick(position: Int){
         currentClickedPosition = position
-//        App.routesService.currentClickedData = position
-        view?.startAddEditRouteActivity(routes[position])
-        //todo ASYNC
-        view?.startAddEditActivity(0)
+        view?.startEditingActivity(routes[position].serialNumber.toString())
     }
 
-    fun onAddButtonClick(value : Int){
-        view?.startAddEditActivity(value)
+    fun onAddButtonClick(){
+        view?.startAddingActivity()
     }
 
     override suspend fun onViewCreated(view: IMainScreenView) {

@@ -8,6 +8,8 @@ import com.example.routerTCP.R
 import com.example.routerTCP.model.objects.ConnectionStatus
 import com.example.routerTCP.model.objects.Route
 import com.example.routerTCP.presentation.main.MainScreenPresenter
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 
 // @Suppress("UNUSED_EXPRESSION")
@@ -39,16 +41,16 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
                     Toast.makeText(itemView.context, item.title, Toast.LENGTH_SHORT).show()
                     //Dialog
                 }
+
                 R.id.edit -> {
                     presenter.onItemClick(adapterPosition)
+                    // TODO: как сделать suspend
                 }
             }
             return@OnMenuItemClickListener true
         })
         popup.show()
     }
-
-
 
 
     private fun setRoutes(route: Route) {
@@ -70,12 +72,9 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
     }
 
 
-
     fun onCleanUp() {
         itemView.setOnClickListener(null)
     }
-
-
 
 
     private lateinit var ipAddressTextView: TextView
@@ -87,6 +86,6 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
     private lateinit var noConnectWithDevice: ImageView
     private lateinit var connectWithDCS: ImageView
     private lateinit var noConnectWithDCS: ImageView
-    }
+}
 
 
