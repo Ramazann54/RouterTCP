@@ -13,15 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
 import com.example.routerTCP.presentation.main.MainScreenPresenter
 import com.example.routerTCP.view.abstractions.IMainScreenView
+import com.example.routerTCP.view.dialog.MyDialogFragment
 import com.example.routerTCP.view.main.add_and_edit_routes.AddingEditRoutesActivity
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClickListener {
 
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_screen_with_table)
@@ -34,10 +33,6 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
         addButton.setOnClickListener(this)
         lifecycleScope.launch {
             presenter.onViewCreated(this@MainScreenWithTableActivity)
-            withContext(Dispatchers.Main)
-            {
-                adapter.notifyDataSetChanged()
-            }
         }
     }
 
@@ -59,6 +54,20 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
             presenter.onAddButtonClick()
         }
     }
+    @SuppressLint("NotifyDataSetChanged")
+    override fun notifyDataCh() {
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun startAddEditActivity(value: Int) {
+        val intent = Intent(this, AddingEditRoutesActivity::class.java)
+        intent.putExtra("STATE", value)
+        startActivity(intent)
+    }
+
+    override fun showDeleteDialog(){
+        dialog.show(supportFragmentManager, "")
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -70,6 +79,7 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
     private lateinit var recyclerView: RecyclerView
     private lateinit var addButton: AppCompatButton
     private val presenter = MainScreenPresenter()
+    private val dialog = MyDialogFragment(presenter)
     private val adapter = RoutesAdapter(presenter)
 }
 

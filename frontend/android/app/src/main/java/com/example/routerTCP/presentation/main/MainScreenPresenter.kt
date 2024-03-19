@@ -22,10 +22,22 @@ class MainScreenPresenter : ISuspendPresenter<IMainScreenView> {
         view?.startAddingActivity()
     }
 
+    fun onDeleteClick(position: Int){
+        currentClickedPosition = position
+        view?.showDeleteDialog()
+    }
+
+    suspend fun deleteRoute(){
+        routeService.deleteRoute(routes[currentClickedPosition].ipAddress)
+        routes.remove(routes[currentClickedPosition])
+        view?.notifyDataCh()
+    }
+
     override suspend fun onViewCreated(view: IMainScreenView) {
         this.view = view
         val r = routeService.loadRoutes(0u, 10u)
         routes.addAll(r)
+        view.notifyDataCh()
     }
 
     override suspend fun onDestroy() {

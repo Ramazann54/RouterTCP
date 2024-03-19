@@ -9,34 +9,26 @@ import android.provider.MediaStore
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import com.example.routerTCP.R
 import com.example.routerTCP.databinding.QrcodeScanActivityBinding
-//import com.example.routerTCP.databinding.QrcodeScanActivityBinding
+import com.example.routerTCP.di.App
 import com.example.routerTCP.presentation.QrcodePresenter
 import com.example.routerTCP.view.main.main_screen.MainScreenWithTableActivity
 import com.google.common.util.concurrent.ListenableFuture
-import com.google.mlkit.vision.barcode.BarcodeScanner
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import com.google.mlkit.vision.barcode.BarcodeScanning
-import com.google.mlkit.vision.barcode.common.Barcode
-import com.google.mlkit.vision.common.InputImage
 import java.util.concurrent.Executors
 
 
 class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
-    private val presenter = QrcodePresenter()
+    private val presenter = QrcodePresenter(App.qrCodeModel)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,8 +63,6 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
     override fun onClick(view: View?) {
         when (view){
             galleryButton -> presenter.onGalleryClick()
-            cameraButton -> presenter.onCameraClick()
-            scanQRButton -> presenter.onScanClick()
             backButton -> presenter.onBackButtonClick()
         }
     }
@@ -107,7 +97,6 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
         }
     }
 
-
     private fun bindCameraPreview(){
         cameraPreview = Preview.Builder()
             .setTargetAspectRatio(AspectRatio.RATIO_16_9).build()
@@ -118,55 +107,25 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
     }
 
     private fun bindInputAnalyser(){
-         val options = BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_QR_CODE).build()
-         val scanner = BarcodeScanning.getClient(options)
-
-    //    imageAnalysis = ImageAnalysis.Builder().setTargetRotation(binding.cameraPreview.display.rotation).build()
+        imageAnalysis = ImageAnalysis.Builder().setTargetRotation(binding.cameraPreview.display.rotation).build()
         val cameraExecutor = Executors.newSingleThreadExecutor()
         imageAnalysis.setAnalyzer(cameraExecutor){imageProxy ->
-            processImageProxy(scanner, imageProxy)
+            presenter.onScanClick(imageProxy)
         }
-        processCameraProvider.bindToLifecycle(this,cameraSelector, imageAnalysis)
+        processCameraProvider.bindToLifecycle(this, cameraSelector, imageAnalysis)
     }
 
-    //Перенести потом в презентор
-    @SuppressLint("UnsafeOptInUsageError", "RestrictedApi")
-    private fun processImageProxy(barcodeScanner: BarcodeScanner, imageProxy: ImageProxy){
-        val inputImage = InputImage.fromMediaImage(imageProxy.image!!, imageProxy.imageInfo.rotationDegrees)
 
-        barcodeScanner.process(inputImage).addOnSuccessListener { barcodes->
-            if (barcodes.isNotEmpty()){
-                for(barcode in barcodes) {
-                    val rawValue = barcode.rawValue
-                    if (rawValue.toString().contains("НПО МИР")) {
-                        //TODO: учесть при рефакторинге кода
-                        //Добавил эту строку чтобы не открывалось несколько главных экранов
-                        imageAnalysis.clearAnalyzer()
-                        processCameraProvider.shutdown()
-                        startMainScreenActivity()
-                    }
-                }
-            }
-        }.addOnFailureListener{
-            it.printStackTrace()
-        }.addOnCompleteListener{
-            imageProxy.close()
-        }
+    @SuppressLint("RestrictedApi")
+    override fun endScanProcess(){
+            imageAnalysis.clearAnalyzer()
+            processCameraProvider.shutdown()
+            startMainScreenActivity()
     }
-
-    override fun showScanResult(result: String?){
-        resultText.text = result
-    }
-
-    override fun startCameraActivity() {
-        TODO("Not yet implemented")
-    }
-
 
     override fun startGalleryActivity(){
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
-        Toast.makeText(this, "asdasdasd", Toast.LENGTH_SHORT).show()
     }
 
     override fun startMainScreenActivity() {
@@ -178,15 +137,16 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
         onBackPressedDispatcher.onBackPressed()
     }
 
+    override fun toastMessage(code: Int){
+        when(code){
+            0 -> Toast.makeText(this, "Некорректное содержание QR кода, попробуйте снова", Toast.LENGTH_SHORT).show()
+            -1 -> Toast.makeText(this, "Ошибка при сканировании QR кода, попробуйте снова", Toast.LENGTH_SHORT).show()
+        }
+    }
 
-    private lateinit var cameraButton: Button
+
+
     private lateinit var backButton: Button
-    private lateinit var scanQRButton: Button
-    private lateinit var resultText: TextView
-    private lateinit var buttonTEST: Button
-
-    private val OPEN_FILE = 300
-
 
     private lateinit var galleryButton: Button
     private lateinit var previewView: PreviewView
@@ -200,7 +160,6 @@ class QRcodeView : AppCompatActivity(), IQRcodeView, OnClickListener{
     companion object{
         private const val PERMISSION_REQUEST_CODE = 0
         const val GALLERY_REQUEST_CODE = 1
-        private const val CAMERA_REQUEST_CODE = 2
         private val NEEDED_PERMISSIONS = arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,

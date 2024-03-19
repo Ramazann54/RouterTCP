@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.lifecycleScope
 import com.example.routerTCP.R
-import com.example.routerTCP.presentation.abstractions.IDialogPresenter
-import com.example.routerTCP.view.abstractions.IDialogView
+import com.example.routerTCP.di.App
+import com.example.routerTCP.presentation.main.MainScreenPresenter
+import com.example.routerTCP.view.main.main_screen.MainScreenWithTableActivity
+import kotlinx.coroutines.launch
 
-open class MyDialogFragment<TDialogView : IDialogView>(private val presenter: IDialogPresenter<TDialogView>) :
-    DialogFragment(), View.OnClickListener, IDialogView {
+open class MyDialogFragment(private val presenter: MainScreenPresenter) : DialogFragment(), View.OnClickListener{
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,14 +30,22 @@ open class MyDialogFragment<TDialogView : IDialogView>(private val presenter: ID
         return view
     }
 
-    override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
+
+    override fun onClick(view: View?) {
+        if(view === deleteButton){
+            lifecycleScope.launch{
+                presenter.deleteRoute()
+                dismiss()
+            }
+        }
+        if (view === cancelButton){
+            dismiss()
+        }
     }
 
- var contentDialogLayout: LinearLayoutCompat? = null
-private var titleTextView: TextView? = null
-private var deleteButton: Button? = null
-private var cancelButton: Button? = null
+    private var contentDialogLayout: LinearLayoutCompat? = null
+    private var deleteButton: Button? = null
+    private var cancelButton: Button? = null
 
 
 }
