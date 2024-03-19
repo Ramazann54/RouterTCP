@@ -36,37 +36,44 @@ class MainScreenWithTableActivity : AppCompatActivity(), IMainScreenView, OnClic
         }
     }
 
-    override fun startAddingActivity(){
-        val intent = Intent(this, AddingEditRoutesActivity::class.java)
-        intent.putExtra("STATE", 1)
-        startActivity(intent)
-    }
-
-    override fun startEditingActivity(routeSN: String){
-        val intent = Intent(this, AddingEditRoutesActivity::class.java)
-        intent.putExtra("STATE", 0)
-        intent.putExtra("SERIAL_NUMBER", routeSN)
-        startActivity(intent)
-    }
-
     override fun onClick(view: View?) {
         if (view === addButton) {
             presenter.onAddButtonClick()
         }
+    }
+
+    override fun startAddingActivity(){
+        presenter.setLastState(1)
+        val intent = Intent(this, AddingEditRoutesActivity::class.java)
+        intent.putExtra("STATE", 1)
+        startActivity(intent)
+
+    }
+
+    override fun startEditingActivity(routeSN: String){
+        presenter.setCurrentSerialNumber(routeSN)
+        presenter.setLastState(0)
+        val intent = Intent(this, AddingEditRoutesActivity::class.java)
+        intent.putExtra("STATE", 0)
+        intent.putExtra("SERIAL_NUMBER", routeSN)
+        startActivity(intent)
     }
     @SuppressLint("NotifyDataSetChanged")
     override fun notifyDataCh() {
         adapter.notifyDataSetChanged()
     }
 
-    private fun startAddEditActivity(value: Int) {
-        val intent = Intent(this, AddingEditRoutesActivity::class.java)
-        intent.putExtra("STATE", value)
-        startActivity(intent)
-    }
-
     override fun showDeleteDialog(){
         dialog.show(supportFragmentManager, "")
+    }
+
+    // TODO: короче мы видели горы видели небо
+    // TODO: короче нужно изменять в презентере лист оттуда удалять и там редактировать сделать методы и вызывать их
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            presenter.onResume()
+        }
     }
 
     override fun onDestroy() {

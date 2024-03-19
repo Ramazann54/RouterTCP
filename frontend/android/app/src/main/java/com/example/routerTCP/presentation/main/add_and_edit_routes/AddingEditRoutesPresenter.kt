@@ -33,8 +33,14 @@ class AddingEditRoutesPresenter :
                     )
                 )
             } else {//в данный момент экран редактирования
-                // TODO: изменять в сервисе путь на такие данные
-
+                App.routesService.editRoute(
+                    Route(
+                        ipAddress,
+                        tcpPort.toInt(),
+                        serialNumber.toLong(),
+                        ConnectionStatus.ConnectWithDCS
+                    )
+                )
             }
             view?.finishActivity()
         } else {//введенные данные не прошли проверку

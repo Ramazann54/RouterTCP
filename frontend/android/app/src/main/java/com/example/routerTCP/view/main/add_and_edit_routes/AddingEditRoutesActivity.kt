@@ -1,19 +1,17 @@
 package com.example.routerTCP.view.main.add_and_edit_routes
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
 import com.example.routerTCP.R
 import com.example.routerTCP.presentation.main.add_and_edit_routes.AddingEditRoutesPresenter
 import com.example.routerTCP.view.abstractions.add_and_edit_routes.IAddingEditRoutesView
-import com.example.routerTCP.view.main.main_screen.MainScreenWithTableActivity
 import kotlinx.coroutines.launch
 
 class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEditRoutesView {
@@ -142,11 +140,6 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
 
     override fun finishActivity() {
         this.finish()
-    }
-
-    override fun startMainScreenWithTableActivity() {
-        val intent = Intent(this, MainScreenWithTableActivity::class.java)
-        startActivity(intent)
     }
 
     /**
