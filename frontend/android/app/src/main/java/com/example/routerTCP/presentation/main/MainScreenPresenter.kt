@@ -27,7 +27,7 @@ class MainScreenPresenter : ISuspendPresenter<IMainScreenView> {
     }
 
     suspend fun deleteRoute(){
-        routeService.deleteRoute(routes[currentClickedPosition].ipAddress)
+        routeService.deleteRoute(routes[currentClickedPosition].serialNumber.toString())
         routes.remove(routes[currentClickedPosition])
         view?.notifyDataCh()
     }
