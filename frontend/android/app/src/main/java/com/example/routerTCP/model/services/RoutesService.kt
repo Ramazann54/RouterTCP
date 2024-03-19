@@ -14,7 +14,7 @@ class RoutesService() : IRoutesService {
     override suspend fun addRoute(route: Route) {
         withContext(Dispatchers.IO) {
             delay(delayInterval)
-            routes.put(route.serialNumber.toString(), route)
+            routes[route.serialNumber.toString()] = route
         }
     }
 
@@ -54,11 +54,15 @@ class RoutesService() : IRoutesService {
     private val routes: MutableMap<String, Route> = buildMap {
         val offset = 10000
         for (i in 0..50) {
-            put((offset + i).toString(),
-                Route((offset + 1000 + i).toString(),
+            put(
+                (offset + i).toString(),
+                Route(
+                    (offset + 1000 + i).toString(),
                     50,
                     (offset + 100 + i).toLong(),
-                    ConnectionStatus.values()[i % 4]))
+                    ConnectionStatus.values()[i % 4]
+                )
+            )
         }
     } as MutableMap<String, Route>
 
