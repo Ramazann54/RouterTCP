@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.example.routerTCP.R
-import com.example.routerTCP.di.App
 import com.example.routerTCP.presentation.main.MainScreenPresenter
-import com.example.routerTCP.view.main.main_screen.MainScreenWithTableActivity
 import kotlinx.coroutines.launch
 
 open class MyDialogFragment(private val presenter: MainScreenPresenter) : DialogFragment(), View.OnClickListener{
@@ -22,11 +22,14 @@ open class MyDialogFragment(private val presenter: MainScreenPresenter) : Dialog
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.delete_dialog, container, false)
-        contentDialogLayout = view.findViewById(R.id.dialog_content_layout)
+
         deleteButton = view.findViewById(R.id.deleteBtn)
         cancelButton = view.findViewById(R.id.cancelBtn)
-        deleteButton?.setOnClickListener(this)
-        cancelButton?.setOnClickListener(this)
+
+        deleteButton.setOnClickListener(this)
+        cancelButton.setOnClickListener(this)
+
+        progressBar = ButtonLoading(deleteButton)
         return view
     }
 
@@ -34,6 +37,7 @@ open class MyDialogFragment(private val presenter: MainScreenPresenter) : Dialog
     override fun onClick(view: View?) {
         if(view === deleteButton){
             lifecycleScope.launch{
+                progressBar.setLoading()
                 presenter.deleteRoute()
                 dismiss()
             }
@@ -43,9 +47,12 @@ open class MyDialogFragment(private val presenter: MainScreenPresenter) : Dialog
         }
     }
 
-    private var contentDialogLayout: LinearLayoutCompat? = null
-    private var deleteButton: Button? = null
-    private var cancelButton: Button? = null
+
+    private lateinit var deleteButton: LinearLayoutCompat
+    private lateinit var cancelButton: AppCompatButton
+    private lateinit var progressBar: ButtonLoading
+
+
 
 
 }
