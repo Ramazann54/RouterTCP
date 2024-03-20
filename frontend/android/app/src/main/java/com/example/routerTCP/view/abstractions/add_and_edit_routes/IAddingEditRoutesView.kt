@@ -10,7 +10,12 @@ interface IAddingEditRoutesView {
 
     fun finishActivity()
 
-    fun setInvalidTextVisibility(boolean: Boolean)
+    fun setInvalidIPTextVisibility(boolean: Boolean)
+
+    fun setInvalidTCPTextVisibility(boolean: Boolean)
+
+
+    fun setInvalidSNTextVisibility(boolean: Boolean)
 
     fun setIPColor(color: Int)
 

@@ -10,35 +10,63 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 class RoutesService() : IRoutesService {
-    override val routes: List<Route> = listOf(
-        Route("12345678", 1234, 5689784, ConnectionStatus.ConnectWithDCS),
-        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDCS),
-        Route("12345678", 1234, 5689784, ConnectionStatus.ConnectWithDevice),
-        Route("12345678", 1234, 5689784, ConnectionStatus.NoConnectWithDevice)
-        )
 
-    override var currentClickedData: Int
-        get() = _currentClickedDate
-        set(value) {
-            _currentClickedDate = value
-        }
-
-    override suspend fun addRoute() {
+    override suspend fun addRoute(route: Route) {
         withContext(Dispatchers.IO) {
             delay(delayInterval)
+            routes[route.serialNumber.toString()] = route
         }
     }
 
-    override suspend fun editRoute() {
+    override suspend fun deleteRoute(serialNumber: String) {
         withContext(Dispatchers.IO) {
             delay(delayInterval)
+            routes.remove(serialNumber)
         }
     }
 
-    var _currentClickedDate = 0
-    private val delayInterval = Random.nextInt(1000..2500).toLong()
+    override suspend fun editRoute(route: Route) {
+        withContext(Dispatchers.IO) {
+            delay(delayInterval)
+            routes[route.serialNumber.toString()] = route
+        }
+    }
 
-    //todo load suspend fun, подписка на обновления, события с новыми данными - обновить ui
+    override suspend fun getRoute(serialNumber: String): Route {
+        return withContext(Dispatchers.IO) {
+            delay(delayInterval)
+            return@withContext routes[serialNumber]!!
+        }
+    }
+
+    override suspend fun getUpdates(): Array<Route> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun loadRoutes(from: UInt, count: UInt): Array<Route> {
+        return withContext(Dispatchers.IO) {
+            delay(delayInterval)
+            return@withContext routes.values.drop(from.toInt()).take(count.toInt()).toTypedArray()
+        }
+    }
 
 
+    private val routes: MutableMap<String, Route> = buildMap {
+        val offset = 10000
+        for (i in 0..10) {
+            put(
+                (offset + 100 + i).toString(),
+                Route(
+                    (offset + 1000 + i).toString(),
+                    50,
+                    (offset + 100 + i).toLong(),
+                    ConnectionStatus.values()[i % 4]
+                )
+            )
+        }
+    }.toMutableMap()
+
+
+    private val delayInterval
+        get() = Random.nextInt(200..1500).toLong()
 }

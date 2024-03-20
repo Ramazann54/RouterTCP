@@ -121,11 +121,27 @@
         android:padding="5dp"
         android:background="@drawable/edit_text_rec"
         android:elevation="5dp"
-        android:inputType="text"
+        android:inputType="number"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tcp_port_text_view" />
+
+    <EditText
+        android:id="@+id/serial_number"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:padding="5dp"
+        android:background="@drawable/edit_text_rec"
+        android:elevation="5dp"
+        android:inputType="text"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serial_number_text_view" />
 
 
     <TextView
@@ -151,20 +167,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tcp_port" />
 
-    <EditText
-        android:id="@+id/serial_number"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="50dp"
-        android:padding="5dp"
-        android:background="@drawable/edit_text_rec"
-        android:elevation="5dp"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serial_number_text_view" />
 
 
     <TextView

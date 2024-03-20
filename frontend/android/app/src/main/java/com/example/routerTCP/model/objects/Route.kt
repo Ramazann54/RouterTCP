@@ -1,6 +1,6 @@
 package com.example.routerTCP.model.objects
 
-class Route(
+data class Route(
     val ipAddress: String,
     val tcpPort: Int,
     val serialNumber: Long,

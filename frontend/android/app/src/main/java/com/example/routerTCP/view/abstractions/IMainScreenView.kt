@@ -1,10 +1,14 @@
 package com.example.routerTCP.view.abstractions
 
-import com.example.routerTCP.model.objects.Route
-
 interface IMainScreenView {
 
-    fun startAddEditRouteActivity(route: Route)
+    fun showDeleteDialog()
 
-    fun startAddEditActivity(value: Int)
+    fun startEditingActivity(routeSN: String)
+
+    fun startAddingActivity()
+
+    fun notifyDataCh()
+
+    fun onResume()
 }

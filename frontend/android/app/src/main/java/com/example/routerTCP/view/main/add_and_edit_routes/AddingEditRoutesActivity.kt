@@ -1,17 +1,18 @@
 package com.example.routerTCP.view.main.add_and_edit_routes
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-//import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.lifecycleScope
 import com.example.routerTCP.R
 import com.example.routerTCP.presentation.main.add_and_edit_routes.AddingEditRoutesPresenter
 import com.example.routerTCP.view.abstractions.add_and_edit_routes.IAddingEditRoutesView
+import kotlinx.coroutines.launch
 
 class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEditRoutesView {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,18 +31,26 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
         tcpPortTextView = findViewById(R.id.tcp_port_text_view)
         serialNumberEditText = findViewById(R.id.serial_number)
         serialNumberTextView = findViewById(R.id.serial_number_text_view)
-        invalidTextView = findViewById(R.id.invalidIPAddress)
+
+        invalidIPTextView = findViewById(R.id.invalidIPAddress)
+        invalidTCPTextView = findViewById(R.id.invalidTCP)
+        invalidSNTextView = findViewById(R.id.invalidSerialNumber)
+
         header = findViewById(R.id.header_title)
 
         var currentActivityState = -10
-        val bundle :Bundle ?=intent.extras
-        if (bundle!=null){
+        var currentRouteSN = "space"
+        val bundle: Bundle? = intent.extras
+        if (bundle != null) {
             currentActivityState = bundle.getInt("STATE")
+            currentRouteSN = bundle.getString("SERIAL_NUMBER").toString()
         }
-
         presenter.setActivityState(currentActivityState)
+        presenter.setRouteSerialNumber(currentRouteSN)
         presenter.onViewCreated(this)
-        presenter.onRestoreCurrentActivityState(currentActivityState)
+        lifecycleScope.launch {
+            presenter.onRestoreCurrentActivityState(currentActivityState)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
@@ -51,19 +60,16 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
     }
 
     override fun onClick(p0: View?) {
-        if(p0 == ipAddressEditText){
-            presenter.onIPTextChanged(ipAddressEditText.text.toString())
-        }
-        if(p0 == tcpPortEditText){
-            presenter.onTCPPortTextChanged(tcpPortEditText.text.toString())
-        }
-        if(p0 == serialNumberEditText){
-            presenter.onSerialNumberTextChanged(serialNumberEditText.text.toString())
-        }
         if (p0 == changeableButton) {
-//            lifecycleScope.launch {
-//                presenter.onChangeableButtonClick()
-//            }
+            presenter.onIPTextChanged(ipAddressEditText.text.toString())
+
+            presenter.onTCPPortTextChanged(tcpPortEditText.text.toString())
+
+            presenter.onSerialNumberTextChanged(serialNumberEditText.text.toString())
+
+            lifecycleScope.launch {
+                presenter.onChangeableButtonClick()
+            }
         }
         if (p0 == cancelButton) {
             presenter.onCancelButtonClick()
@@ -91,12 +97,29 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
         serialNumberEditText.isEnabled = boolean
     }
 
-    override fun setInvalidTextVisibility(boolean: Boolean) {
-        if(boolean){
-            invalidTextView.visibility = View.VISIBLE
+    override fun setInvalidIPTextVisibility(boolean: Boolean) {
+        if (boolean) {
+            invalidIPTextView.visibility = View.VISIBLE
+            return
+        } else {
+            invalidIPTextView.visibility = View.GONE
+        }
+    }
+
+    override fun setInvalidTCPTextVisibility(boolean: Boolean) {
+        if (boolean) {
+            invalidTCPTextView.visibility = View.VISIBLE
             return
         }
-        invalidTextView.visibility = View.GONE
+        invalidTCPTextView.visibility = View.GONE
+    }
+
+    override fun setInvalidSNTextVisibility(boolean: Boolean) {
+        if (boolean) {
+            invalidSNTextView.visibility = View.VISIBLE
+            return
+        }
+        invalidSNTextView.visibility = View.GONE
     }
 
     override fun setIPColor(color: Int) {
@@ -130,7 +153,9 @@ class AddingEditRoutesActivity : AppCompatActivity(), OnClickListener, IAddingEd
     private lateinit var tcpPortTextView: TextView
     private lateinit var serialNumberEditText: EditText
     private lateinit var serialNumberTextView: TextView
-    private lateinit var invalidTextView: TextView
+    private lateinit var invalidIPTextView: TextView
+    private lateinit var invalidTCPTextView: TextView
+    private lateinit var invalidSNTextView: TextView
     private lateinit var header: TextView
 
     private lateinit var cancelButton: AppCompatButton

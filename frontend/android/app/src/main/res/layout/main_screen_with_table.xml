@@ -8,7 +8,6 @@
     tools:context=".view.main.main_screen.MainScreenWithTableActivity">
 
 
-
     <TextView
         android:id="@+id/currentRoutesTextView"
         android:layout_width="wrap_content"
@@ -35,26 +34,31 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/route_table_rec_background"
-        android:elevation="10dp"
-        android:gravity="center_horizontal"
+        android:elevation="5dp"
         android:orientation="vertical"
         android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="4">
 
             <TextView
+                android:id="@+id/ip_address_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:fontFamily="@font/open_sans_semibold"
                 android:gravity="center"
                 android:text="@string/ip_address"
@@ -64,15 +68,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:fontFamily="@font/open_sans_semibold"
+                android:gravity="center"
                 android:text="@string/tcp_port"
                 android:textColor="@color/dark_gray_main_text" />
 
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:fontFamily="@font/open_sans_semibold"
                 android:gravity="center"
                 android:text="@string/serial_number"
@@ -81,7 +88,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:fontFamily="@font/open_sans_semibold"
                 android:gravity="center"
                 android:text="@string/connection_status"
@@ -102,9 +110,9 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginTop="10dp"
-        android:elevation="5dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/add_route"
+        android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 

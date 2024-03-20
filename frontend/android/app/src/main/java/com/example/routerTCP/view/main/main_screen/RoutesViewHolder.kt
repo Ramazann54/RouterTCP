@@ -2,7 +2,9 @@ package com.example.routerTCP.view.main.main_screen
 
 import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.ImageView
+import android.widget.PopupMenu
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routerTCP.R
 import com.example.routerTCP.model.objects.ConnectionStatus
@@ -10,7 +12,6 @@ import com.example.routerTCP.model.objects.Route
 import com.example.routerTCP.presentation.main.MainScreenPresenter
 
 
-// @Suppress("UNUSED_EXPRESSION")
 class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
     RecyclerView.ViewHolder(view) {
     fun onBind(route: Route) {
@@ -28,6 +29,7 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
             //todo ASYNC
             true
         }
+
     }
 
     private fun showPopup(view: View) {
@@ -36,8 +38,7 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
         popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
                 R.id.delete -> {
-                    Toast.makeText(itemView.context, item.title, Toast.LENGTH_SHORT).show()
-                    //Dialog
+                    presenter.onDeleteClick(adapterPosition)
                 }
                 R.id.edit -> {
                     presenter.onItemClick(adapterPosition)
@@ -48,9 +49,6 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
         })
         popup.show()
     }
-
-
-
 
     private fun setRoutes(route: Route) {
         ipAddressTextView.text = route.ipAddress
@@ -70,14 +68,9 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
         }
     }
 
-
-
     fun onCleanUp() {
         itemView.setOnClickListener(null)
     }
-
-
-
 
     private lateinit var ipAddressTextView: TextView
     private lateinit var tcpPortTextView: TextView
@@ -88,6 +81,6 @@ class RoutesViewHolder(private val presenter: MainScreenPresenter, view: View) :
     private lateinit var noConnectWithDevice: ImageView
     private lateinit var connectWithDCS: ImageView
     private lateinit var noConnectWithDCS: ImageView
-    }
+}
 
 
