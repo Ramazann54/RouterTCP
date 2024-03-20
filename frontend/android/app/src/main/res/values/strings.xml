@@ -21,5 +21,6 @@
     <string name="scan">Отсканировать</string>
     <string name="camera_qr">Наведите камеру на QR-код</string>
     <string name="qr_error">Ошибка при сканировании QR-кода</string>
+    <string name="button">Button</string>
 
 </resources>
